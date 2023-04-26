@@ -158,7 +158,7 @@ const FormStep: FC<FormStepProps> = ({
               />
             </>
           ) : (
-            <p className="text-xs font-semibold">
+            <p className="text-xs font-semibold text-mediumDanger">
               No se mostrará tu nombre para este tipo de respuestas.
             </p>
           )}

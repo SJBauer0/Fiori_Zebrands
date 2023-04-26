@@ -9,6 +9,7 @@ import {
   Respuestas,
 } from '../../components';
 import { userDataContext } from '../../contexts';
+import BotonGestionarRetro from './BotonGestionarRetro';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/retrospectivas`;
 
@@ -121,7 +122,7 @@ const MisRetrospectivas: FC<MisRetrospectivasProps> = ({}) => {
     getRetrospectivas();
   }, []);
   return (
-    <DesignTemplate>
+    <DesignTemplate buttons={<BotonGestionarRetro/>}>
       <Routes>
         <Route path="*" element={<Navigate to="/404" replace />} />
         <Route
