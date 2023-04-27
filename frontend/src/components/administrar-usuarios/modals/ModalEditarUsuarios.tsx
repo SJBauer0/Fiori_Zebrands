@@ -224,7 +224,7 @@ const ModalEditarUsuarios: FC<ModalEditarUsuariosProps> = ({
               <Button
                 appearance="primary"
                 type="submit"
-                form="RegistrarUsuarioForm"
+                form="EditarUsuarioForm"
               >
                 Actualizar datos del usuario
               </Button>

@@ -108,7 +108,7 @@ const ModalNuevoAccionable: FC<ModalNuevoAccionable> = ({
         getAccionables();
         setIsModalOpen(false);
         addFlag(
-          '¡Excelente! Tu accionable se ha agregado correctamente al Backlog de Jira',
+          'Muy bien! Tu accionable se ha registrado y agregado correctamente al Backlog de Jira.',
           CheckCircleIcon,
           'success'
         );

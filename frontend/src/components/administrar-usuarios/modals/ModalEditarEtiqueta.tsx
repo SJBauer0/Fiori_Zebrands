@@ -123,7 +123,7 @@ const ModalEditarEtiqueta: FC<ModalEditarEtiquetaProps> = ({
               <form
                 onSubmit={handleSubmit}
                 className="w-full flex flex-col items-center justify-center gap-6"
-                id="RegistrarEtiquetaForm"
+                id="EditarEtiquetaForm"
               >
                 <div className="flex flex-col w-full gap-1">
                   <label htmlFor="nombre" className={labelStyle}>
@@ -176,9 +176,9 @@ const ModalEditarEtiqueta: FC<ModalEditarEtiquetaProps> = ({
               <Button
                 appearance="primary"
                 type="submit"
-                form="RegistrarEtiquetaForm"
+                form="EditarEtiquetaForm"
               >
-                Registrar etiqueta
+                Actualizar etiqueta
               </Button>
             </div>
           </div>
