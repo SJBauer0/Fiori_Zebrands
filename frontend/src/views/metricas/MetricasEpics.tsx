@@ -128,6 +128,27 @@ const MetricasEpics: FC = ({}) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 justify-center gap-7 w-full h-auto md:h-[70rem]">
+        <div className="md:col-span-2 ">
+          <ChartCards title="Story points del epic">
+            {chart2Data && chart2Data.length > 0 ? (
+              <StackedBarChart data={chart2Data} />
+            ) : (
+              <p className="text-xs">
+                No hay datos para graficar con el epic elegido
+              </p>
+            )}
+          </ChartCards>
+        </div>
+
+        <ChartCards title="Comparación de sprints">
+          {chartData && chartData.length > 0 ? (
+            <PieChart data={chartData} />
+          ) : (
+            <p className="text-xs">
+              No hay datos para graficar con el epic elegido
+            </p>
+          )}
+        </ChartCards>
         <div className="md:col-span-3 flex flex-col md:flex-row gap-7">
           <ChartCards title="Story points en Done acumulados por epic">
             <ComposedChart data={chart5Data} isSprint={false} />
@@ -156,28 +177,6 @@ const MetricasEpics: FC = ({}) => {
             <ComposedChart data={chart4Data} isSprint={false} />
           </ChartCards>
         </div>
-
-        <div className="md:col-span-2 ">
-          <ChartCards title="Story points del epic">
-            {chart2Data && chart2Data.length > 0 ? (
-              <StackedBarChart data={chart2Data} />
-            ) : (
-              <p className="text-xs">
-                No hay datos para graficar con el epic elegido
-              </p>
-            )}
-          </ChartCards>
-        </div>
-
-        <ChartCards title="Comparación de sprints">
-          {chartData && chartData.length > 0 ? (
-            <PieChart data={chartData} />
-          ) : (
-            <p className="text-xs">
-              No hay datos para graficar con el epic elegido
-            </p>
-          )}
-        </ChartCards>
       </div>
     </div>
   );

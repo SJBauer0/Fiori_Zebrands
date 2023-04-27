@@ -156,41 +156,6 @@ const MetricasPersonales: FC = ({}) => {
     getPersonalStorypointsProgressive2();
   }, [sprintsSeleccionadas]);
 
-  const shouldMoveToTop =
-    (data3 && data3.length === 0) ||
-    (data4 && data4.length === 0) ||
-    (data5 && data5.length === 0) ||
-    (data6 && data6.length === 0);
-
-  const renderCharts = () => {
-    return (
-      <>
-        <div className="md:col-span-2">
-          <ChartCards title="Story points">
-            {data2 && data2.length > 0 ? (
-              <StackedBarChart data={data2} />
-            ) : (
-              <p className="text-xs">
-                No hay datos para graficar con los filtros de sprint
-                elegidos
-              </p>
-            )}
-          </ChartCards>
-        </div>
-        <ChartCards title="Issues totales y completados">
-          {data && data.length > 0 ? (
-            <PieChart data={data} />
-          ) : (
-            <p className="text-xs">
-              No hay datos para graficar con los filtros de sprint
-              elegidos
-            </p>
-          )}
-        </ChartCards>
-      </>
-    );
-  };
-
   return (
     <div className="flex flex-col gap-5">
       <div className="gap-4 flex flex-col justify-left p-7 w-full rounded border border-gray-200 bg-white items-center">
@@ -215,7 +180,28 @@ const MetricasPersonales: FC = ({}) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 justify-center gap-7 w-full h-auto md:h-[70rem]">
-        {shouldMoveToTop && renderCharts()}
+        <div className="md:col-span-2">
+          <ChartCards title="Story points">
+            {data2 && data2.length > 0 ? (
+              <StackedBarChart data={data2} />
+            ) : (
+              <p className="text-xs">
+                No hay datos para graficar con los filtros de sprint
+                elegidos
+              </p>
+            )}
+          </ChartCards>
+        </div>
+        <ChartCards title="Issues totales y completados">
+          {data && data.length > 0 ? (
+            <PieChart data={data} />
+          ) : (
+            <p className="text-xs">
+              No hay datos para graficar con los filtros de sprint
+              elegidos
+            </p>
+          )}
+        </ChartCards>
         <div className="md:col-span-3 flex flex-col md:flex-row gap-7">
           <ChartCards title="Story points en Done acumulados por sprint">
             {data5 && data5.length > 0 ? (
@@ -272,7 +258,6 @@ const MetricasPersonales: FC = ({}) => {
             )}
           </ChartCards>
         </div>
-        {!shouldMoveToTop && renderCharts()}
       </div>
     </div>
   );

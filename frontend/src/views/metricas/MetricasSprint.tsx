@@ -132,6 +132,29 @@ const MetricasSprint: FC = ({}) => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 justify-center gap-7 w-full h-auto md:h-[70rem]">
+        <div className="md:col-span-3 flex flex-col md:flex-row gap-7">
+          <ChartCards title="Story points del sprint">
+            {chart2Data && chart2Data.length > 0 ? (
+              <StackedBarChart data={chart2Data} />
+            ) : (
+              <p className="text-xs">
+                No hay datos para graficar con el o los sprints
+                elegidos
+              </p>
+            )}
+          </ChartCards>
+
+          <ChartCards title="Issues totales y completado">
+            {chartData && chartData.length > 0 ? (
+              <PieChart data={chartData} />
+            ) : (
+              <p className="text-xs">
+                No hay datos para graficar con el o los sprints
+                elegidos
+              </p>
+            )}
+          </ChartCards>
+        </div>
         <div className="md:col-span-3">
           <ChartCards title="Story points en Done acumulados en los últimos 5 sprints">
             <ComposedChart data={chart5Data} />
@@ -157,30 +180,6 @@ const MetricasSprint: FC = ({}) => {
             lineColor="#388bff"
           />
         </ChartCards>
-
-        <div className="md:col-span-3 flex flex-col md:flex-row gap-7">
-          <ChartCards title="Story points del sprint">
-            {chart2Data && chart2Data.length > 0 ? (
-              <StackedBarChart data={chart2Data} />
-            ) : (
-              <p className="text-xs">
-                No hay datos para graficar con el o los sprints
-                elegidos
-              </p>
-            )}
-          </ChartCards>
-
-          <ChartCards title="Issues totales y completado">
-            {chartData && chartData.length > 0 ? (
-              <PieChart data={chartData} />
-            ) : (
-              <p className="text-xs">
-                No hay datos para graficar con el o los sprints
-                elegidos
-              </p>
-            )}
-          </ChartCards>
-        </div>
       </div>
     </div>
   );
