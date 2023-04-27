@@ -5,14 +5,16 @@ import ErrorIcon from '@atlaskit/icon/glyph/error';
 import HipchatMediaAttachmentCountIcon from '@atlaskit/icon/glyph/hipchat/media-attachment-count';
 import WarningIcon from '@atlaskit/icon/glyph/warning';
 import axios from 'axios';
-import { FC, useCallback, useContext } from 'react';
+import { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { questionsContext } from '../local-contexts';
 import BannerRetro from '../reusable/BannerRetro';
 import type { Retrospectiva } from '../../../views/mis-retrospectivas/MisRetrospectivas';
 import { format, parseISO } from 'date-fns';
+import { Accionable } from '../../../views/mis-accionables/MisAccionables';
+import { userDataContext } from '../../../contexts';
 
-const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/retrospectivas`;
+const URIA = `${import.meta.env.VITE_APP_BACKEND_URI}/accionables`;
 
 interface RecordatoriosProps {
   setIsOpen: (isOpen: boolean) => void;
@@ -23,6 +25,7 @@ const Recordatorios: FC<RecordatoriosProps> = ({
   setIsOpen,
   retroPendientes,
 }) => {
+  const { user } = useContext(userDataContext);
   const closeModal = useCallback(() => setIsOpen(false), []);
   const navigate = useNavigate();
   const { retroId } = useParams();
@@ -32,6 +35,67 @@ const Recordatorios: FC<RecordatoriosProps> = ({
   const formatDate = (date: string) => {
     return format(parseISO(date), 'dd/MM/yyyy');
   };
+
+  const [accionables, setAccionables] = useState<Accionable[]>([]);
+  const [prioridadBaja, setPrioridadBaja] = useState<Accionable[]>(
+    []
+  );
+  const [prioridadMedia, setPrioridadMedia] = useState<Accionable[]>(
+    []
+  );
+  const [prioridadAlta, setPrioridadAlta] = useState<Accionable[]>(
+    []
+  );
+
+  const getAccionables = async () => {
+    try {
+      const response = await axios.get(`${URIA}/${user?.id_usuario}`);
+      setAccionables(response.data);
+    } catch (error) {
+      console.error('Error al obtener los accionables', error);
+    }
+  };
+
+  const separarAccionables = async (accionables: any) => {
+    const prioridadBaja: Accionable[] = [];
+    const prioridadMedia: Accionable[] = [];
+    const prioridadAlta: Accionable[] = [];
+
+    accionables.forEach((accionable: Accionable) => {
+      const fecha_accionable = accionable.fecha_esperada;
+      const fecha_actual = new Date();
+
+      const date1 = new Date(fecha_accionable);
+      const date2 = new Date(fecha_actual);
+
+      const diferenciaTiempo = date1.getTime() - date2.getTime();
+      const diferenciaDias = Math.floor(
+        diferenciaTiempo / (1000 * 60 * 60 * 24)
+      );
+
+      if (diferenciaDias > 30) {
+        prioridadBaja.push(accionable);
+      } else if (diferenciaDias <= 30 && diferenciaDias > 7) {
+        prioridadMedia.push(accionable);
+      } else if (diferenciaDias <= 7) {
+        prioridadAlta.push(accionable);
+      }
+    });
+
+    setPrioridadBaja(prioridadBaja);
+    setPrioridadMedia(prioridadMedia);
+    setPrioridadAlta(prioridadAlta);
+  };
+
+  useEffect(() => {
+    getAccionables();
+  }, []);
+
+  useEffect(() => {
+    if (accionables.length > 0) {
+      separarAccionables(accionables);
+    }
+  }, [accionables]);
 
   return (
     <Blanket isTinted={true}>
@@ -62,13 +126,13 @@ const Recordatorios: FC<RecordatoriosProps> = ({
                 <div className="flex items-center">
                   <ErrorIcon label="urgente" primaryColor="#E34935" />
                   <p className="flex flex-row text-xs text-danger">
-                    Tienes 3 accionables en alta prioridad
+                    Tienes {prioridadAlta.length} accionables en alta prioridad
                   </p>
                 </div>
                 <div className="flex flex-row items-center">
                   <WarningIcon label="medio" primaryColor="#D97008" />
                   <p className="text-xs text-mediumDanger flex items-center">
-                    Tienes 2 accionables en prioridad media
+                    Tienes {prioridadMedia.length} accionables en prioridad media
                   </p>
                 </div>
                 <div className="flex flex-row items-center">
@@ -77,7 +141,7 @@ const Recordatorios: FC<RecordatoriosProps> = ({
                     primaryColor="#22A06B"
                   />
                   <p className="text-xs text-green">
-                    Tienes 1 accionable en prioridad baja
+                    Tienes {prioridadBaja.length} accionable en prioridad baja
                   </p>
                 </div>
               </div>
