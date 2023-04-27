@@ -25,3 +25,7 @@ export { default as ModalLoading } from './metricas/ModalLoading';
 export { default as ModalUpdateIssues } from './metricas/ModalUpdateIssues';
 export { default as DropdownEpics } from './metricas/DropdownEpics';
 export { default as DropdownSprints } from './metricas/DropdownSprints';
+
+// Accionables
+export { default as ModalNuevoAccionable } from './accionables/modals/ModalNuevoAccionable';
+export { default as BoxAccionable } from './accionables/BoxAccionable';

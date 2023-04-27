@@ -13,43 +13,49 @@ exports.getSprintsJira = async (req, res, next) => {
 };
 
 exports.postSprintsJira = async (req, res, next) => {
-  var sprintsDB = await sprintModel.getSprints();
-  sprintsDB = sprintsDB.shift();
-  const sprints = await sprintModel.fetchSprintsJira();
-  for (let sprint of sprints) {
-    if (sprintsDB.length > 0) {
-      for (let sprintDB of sprintsDB) {
-        if (sprintDB.state != 'active') {
-          await sprintModel.postSprints(
-            sprint.id.toString(),
-            sprint.nombre,
-            sprint.fecha_inicio.slice(0, 10),
-            sprint.fecha_fin,
-            sprint.state,
-            sprint.boardId.toString()
-          );
-        } else {
-          await sprintModel.updateSprint(sprint.id, sprint.state);
-          await sprintModel.postSprints(
-            sprint.id.toString(),
-            sprint.nombre,
-            sprint.fecha_inicio.slice(0, 10),
-            sprint.fecha_fin,
-            sprint.state,
-            sprint.boardId.toString()
-          );
+  try {
+    var sprintsDB = await sprintModel.getSprints();
+    sprintsDB = sprintsDB.shift();
+    const sprints = await sprintModel.fetchSprintsJira();
+    for (let sprint of sprints) {
+      if (sprintsDB.length > 0) {
+        for (let sprintDB of sprintsDB) {
+          if (sprintDB.state != 'active') {
+            await sprintModel.postSprints(
+              sprint.id.toString(),
+              sprint.nombre,
+              sprint.fecha_inicio.slice(0, 10),
+              sprint.fecha_fin,
+              sprint.state,
+              sprint.boardId.toString()
+            );
+          } else {
+            await sprintModel.updateSprint(sprint.id, sprint.state);
+            await sprintModel.postSprints(
+              sprint.id.toString(),
+              sprint.nombre,
+              sprint.fecha_inicio.slice(0, 10),
+              sprint.fecha_fin,
+              sprint.state,
+              sprint.boardId.toString()
+            );
+          }
         }
+      } else {
+        await sprintModel.postSprints(
+          sprint.id.toString(),
+          sprint.nombre,
+          sprint.fecha_inicio.slice(0, 10),
+          sprint.fecha_fin,
+          sprint.state,
+          sprint.boardId.toString()
+        );
       }
-    } else {
-      await sprintModel.postSprints(
-        sprint.id.toString(),
-        sprint.nombre,
-        sprint.fecha_inicio.slice(0, 10),
-        sprint.fecha_fin,
-        sprint.state,
-        sprint.boardId.toString()
-      );
     }
+    console.log('Sprints guardados');
+    res.send('Sprints guardados en la base de datos');
+  } catch (error) {
+    console.log(error);
+    res.end();
   }
-  res.send('Sprints guardados en la base de datos');
 };

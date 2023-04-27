@@ -36,7 +36,7 @@ const DesignTemplate: FC<DesignTemplateProps> = ({
 
   return (
     <>
-      <div className="flex flex-col gap-5 lg:gap-6 w-auto lg:mx-[6vw] lg:my-[1vh] lg:ml-[9vw] lg:mr-[3vw]">
+      <div className="flex flex-col gap-5 lg:gap-6 w-auto mx-[2vw] lg:mx-[6vw] lg:mb-[1vh] lg:ml-[9vw] lg:mr-[3vw] items-center">
         <div className="visible lg:invisible">
           <SidebarMobile
             isSidebarOpen={mobileMenu}
@@ -47,21 +47,18 @@ const DesignTemplate: FC<DesignTemplateProps> = ({
         <div className="invisible lg:visible">
           <Sidebar />
         </div>
-        <div className="flex flex-row justify-between items-center lg:px-0 px-10">
+        <div className="flex flex-row justify-between items-center lg:px-0 px-10 w-full">
           <p className="font-medium text-[1.09rem] h-full text-left text-paragraph">
             Hola, {name}
           </p>
-          <div>
-            <button
-              onClick={handleMenu}
-              className="lg:invisible visible"
-            >
+          <div className="lg:invisible visible">
+            <button type="button" onClick={handleMenu}>
               <MenuExpandIcon label="menu" size="xlarge" />
             </button>
           </div>
         </div>
         <div className="lg:flex lg:flex-row justify-center lg:justify-between items-center w-full">
-          <div className="flex flex-row justify-center lg:justify-start items-center gap-2 lg:gap-4">
+          <div className="flex flex-row justify-center lg:justify-start items-center gap-2 lg:gap-3">
             <div className="bg-selectBold flex p-2 rounded-xl w-fit scale-[0.85]">
               <MainIcon
                 label={`${pathInfo[path].view.toLowerCase()}`}
@@ -77,9 +74,12 @@ const DesignTemplate: FC<DesignTemplateProps> = ({
             {buttons}
           </div>
         </div>
-        <div className="bg-background w-auto h-auto rounded-lg p-2 lg:p-7 text-paragraph m-2">
+        <div className="bg-background w-full h-auto rounded-lg p-2 lg:p-7 text-paragraph m-2">
           {children}
         </div>
+        <p className="text-xs text-slate-600 mb-5 w-full text-center">
+          Made with 💙 by Fiori © 2023
+        </p>
       </div>
     </>
   );

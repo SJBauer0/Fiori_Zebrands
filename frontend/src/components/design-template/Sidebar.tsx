@@ -24,7 +24,6 @@ const Sidebar = ({}) => {
   const { user, setUser } = useContext(userDataContext);
   const navigate = useNavigate();
   const idRol = user?.id_rol || -1;
-  const name = user?.nombre || 'Usuario';
   const location = useLocation();
   const pColor = '#44546F';
   const sColor = '#0C66E4';
@@ -47,8 +46,22 @@ const Sidebar = ({}) => {
       return routeMatcher.test(path);
     });
   };
-
   const isOnProtectedRoute = onProtectedRoute(location.pathname);
+
+  const parseName = (): string => {
+    if (!user) return 'Usuario';
+    const parsedName = user?.nombre.split(' ');
+    if (parsedName.length > 2) {
+      let firstName = parsedName[0];
+      let middleName = parsedName[1];
+      let finalName = [firstName, middleName].join(' ');
+      return finalName;
+    } else {
+      return user?.nombre;
+    }
+  };
+
+  const name = parseName();
 
   const handleLogout = async () => {
     await axios.get(URI, {
@@ -95,10 +108,7 @@ const Sidebar = ({}) => {
               className={textNotActiveStyles}
               variants={linksVariants}
             >
-              {name && name.length > 22
-                ? `${name.slice(0, 22)}...`
-                : name}
-              {!name && user?.nombre === undefined && 'Usuario'}
+              {name && name}
             </motion.p>
           </div>
 

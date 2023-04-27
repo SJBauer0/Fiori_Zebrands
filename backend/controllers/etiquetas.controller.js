@@ -1,4 +1,4 @@
-const Etiquetas = require('../models/etiquetas.model');
+const Etiquetas = require("../models/etiquetas.model");
 
 exports.getEtiquetas = (req, res, next) => {
   Etiquetas.getEtiquetas()

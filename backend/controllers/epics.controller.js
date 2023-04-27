@@ -32,9 +32,11 @@ exports.postEpicsJira = async (req, res, next) => {
         epic.updatedAt.slice(0, 10)
       );
     }
-    res.send('Epics guardados');
+    res.end();
+    console.log('Epics guardados');
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error al obtener los epics.' });
+    console.log('error en los epics');
   }
 };

@@ -64,6 +64,7 @@ const issuesJiraRoutes = require('./routes/issuesJira.routes');
 const sprintsJiraRoutes = require('./routes/sprints.routes');
 const epicJiraRoutes = require('./routes/epicsJira.routes');
 const metricasRoutes = require('./routes/metricas.routes');
+const accionablesRoutes = require('./routes/accionables.routes');
 
 //Rutas para Deploy en AWS
 
