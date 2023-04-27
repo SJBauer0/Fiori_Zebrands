@@ -231,12 +231,20 @@ const Dashboard: FC = ({}) => {
                 (retro, i) =>
                   i < 2 &&
                   Number(retroId) !== retro.id && (
-                    <BannerRetro
-                      key={retro.id}
-                      titulo={retro.titulo}
-                      fechaInicio={formatDate(retro.fecha_inicio)}
-                      tags={retro.tags}
-                    />
+                    <div
+                      onClick={() =>
+                        navigate(
+                          `/mis-retrospectivas/responder/${retro.id}`
+                        )
+                      }
+                    >
+                      <BannerRetro
+                        key={retro.id}
+                        titulo={retro.titulo}
+                        fechaInicio={formatDate(retro.fecha_inicio)}
+                        tags={retro.tags}
+                      />
+                    </div>
                   )
               )}
               {retroPendientes.length > 2 && (
