@@ -7,7 +7,7 @@ import WarningIcon from '@atlaskit/icon/glyph/warning';
 import axios from 'axios';
 import { format, parseISO } from 'date-fns';
 import { FC, useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BotonReporte, Spinner } from '../../components';
 import DesignTemplate from '../../components/design-template/DesignTemplate';
 import BannerRetro from '../../components/respuesta-retro/reusable/BannerRetro';
@@ -23,7 +23,6 @@ const Dashboard: FC = ({}) => {
   const { user } = useContext(userDataContext);
   const navigate = useNavigate();
   const [tryFetch, setTryFetch] = useState(false);
-  const { retroId } = useParams();
   const [retroPendientes, setRetroPendientes] = useState<
     Array<Retrospectiva>
   >([]);
@@ -230,21 +229,13 @@ const Dashboard: FC = ({}) => {
               {retroPendientes.map(
                 (retro, i) =>
                   i < 2 &&
-                  Number(retroId) !== retro.id && (
-                    <div
-                      onClick={() =>
-                        navigate(
-                          `/mis-retrospectivas/responder/${retro.id}`
-                        )
-                      }
-                    >
-                      <BannerRetro
-                        key={retro.id}
-                        titulo={retro.titulo}
-                        fechaInicio={formatDate(retro.fecha_inicio)}
-                        tags={retro.tags}
-                      />
-                    </div>
+                  retro.id && (
+                    <BannerRetro
+                      key={retro.id}
+                      titulo={retro.titulo}
+                      fechaInicio={formatDate(retro.fecha_inicio)}
+                      tags={retro.tags}
+                    />
                   )
               )}
               {retroPendientes.length > 2 && (
