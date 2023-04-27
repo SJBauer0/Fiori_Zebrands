@@ -38,11 +38,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(validSession);
+
 app.get('/api', (req, res, next) => {
   res.json({ message: 'Fiori' });
 });
 
-app.use(validSession, authRoutes);
+app.use(authRoutes);
 
 app.use((err, req, res, next) => {
   if (err.message === 'UserNotFound') {
