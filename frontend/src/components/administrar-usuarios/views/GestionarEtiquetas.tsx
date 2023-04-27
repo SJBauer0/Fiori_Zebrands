@@ -26,7 +26,7 @@ const GestionarEtiquetas = () => {
             appearance="primary"
             iconBefore={<AddIcon label="" />}
           >
-            Registrar etiqueta
+            Nueva etiqueta
           </Button>
         </>
       }

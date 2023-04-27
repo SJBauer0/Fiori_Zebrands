@@ -246,17 +246,21 @@ const ModalReporte: FC<ModalReporteProps> = ({ setIsOpen }) => {
               </div>
             </div>
             <div
-              className="flex items-center justify-center
+              className="flex items-center justify-end
             w-full gap-10 lg:flex-row flex-col"
             >
               <Button
+                className="order-2 lg:order-1"
                 appearance="default"
                 onClick={() => setIsOpen(false)}
               >
                 Cancelar
               </Button>
               {canvasSprints.length > 0 && canvasEpics.length > 0 ? (
-                <Button appearance="primary">
+                <Button
+                  appearance="primary"
+                  className="order-1 lg:order-2"
+                >
                   <PDFDownloadLink
                     document={
                       <Reporte
@@ -274,7 +278,11 @@ const ModalReporte: FC<ModalReporteProps> = ({ setIsOpen }) => {
                   </PDFDownloadLink>
                 </Button>
               ) : (
-                <Button appearance="primary" isDisabled>
+                <Button
+                  appearance="primary"
+                  isDisabled
+                  className="order-1 lg:order-2"
+                >
                   Cargando el reporte...
                 </Button>
               )}

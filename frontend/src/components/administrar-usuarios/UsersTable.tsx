@@ -95,7 +95,10 @@ const UsersTable: FC<UsersTableProps> = ({}) => {
 
           content: (
             <div className="flex justify-center">
-              <BorrarIcon idUsuario={usuario.id} />
+              <BorrarIcon
+                idUsuario={usuario.id}
+                nombreUsuario={usuario.nombre}
+              />
             </div>
           ),
         },

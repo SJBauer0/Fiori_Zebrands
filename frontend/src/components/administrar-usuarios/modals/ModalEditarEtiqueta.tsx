@@ -13,8 +13,12 @@ import {
 import { FlagContext } from '../../../contexts';
 import DropdownColores from '../DropdownColores';
 import { getEtiquetasContext } from '../local-contexts';
+import Button from '@atlaskit/button';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/etiquetas/`;
+
+const labelStyle =
+  "after:content-['*'] after:text-[#ae2a19] text-xs font-semibold text-label";
 
 interface Etiqueta {
   id: number;
@@ -103,91 +107,79 @@ const ModalEditarEtiqueta: FC<ModalEditarEtiquetaProps> = ({
     return (
       <>
         <div className="z-[1000] bg-blueRGBA fixed top-0 bottom-0 right-0 left-0 flex items-center justify-center">
-          <div className="p-10 bg-white rounded-xl flex flex-col">
+          <div className="p-10 bg-white rounded flex flex-col w-[40vw]">
             <div className="w-full flex flex-col items-center">
-              <div className="w-full text-xl font-bold mb-1 flex items-center justify-between">
-                <h4>Modificar Etiqueta</h4>
-                <button onClick={() => onClose()}>
-                  <CrossIcon label="Cross Icon" />
-                </button>
-              </div>
-              <div className="w-full text-sm text-[#44546f] mb-5">
-                Modifica los datos de una etiqueta en el sistema.
+              <div className="w-full mb-1 flex items-center justify-between font-semibold text-base">
+                <h4>Modificar etiqueta</h4>
+                <div
+                  className="flex items-center justify-center cursor-pointer p-1"
+                  onClick={onClose}
+                >
+                  <CrossIcon label="cerrar modal" size="small" />
+                </div>
               </div>
             </div>
-            <div className="w-full flex flex-col justify center">
-              <p className="font-bold text-left mb-4">
-                Detalles de etiqueta
-              </p>
-              <div className="flex justify-center" id="tag">
-                <Tag
-                  text={nombre}
-                  color={color}
-                  isRemovable={false}
-                  appearance="rounded"
-                />
-              </div>
+            <div className="w-full flex flex-col gap-7 mt-2">
               <form
                 onSubmit={handleSubmit}
-                action=""
-                method="post"
-                className="flex flex-col mt-4"
-                id="EditarEtiquetaForm"
+                className="w-full flex flex-col items-center justify-center gap-6"
+                id="RegistrarEtiquetaForm"
               >
-                <div className="flex gap-10">
-                  <div className="flex flex-col">
-                    <label
-                      htmlFor="nombre"
-                      className="text-sm text-slate-700 font-semibold"
-                    >
-                      Nombre:
-                    </label>
-                    <input
-                      required
-                      className="h-8 border-2 border-gray0 rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100"
-                      autoComplete="off"
-                      name="nombre"
-                      id="nombre"
-                      type="text"
-                      defaultValue={etiqueta.nombre}
-                      pattern="^[a-zA-Z0-9!@#$%^&*()_+\/\-\sáéíóúÁÉÍÓÚñÑ]{1,15}$"
-                      title="El nombre de la etiqueta debe tener entre 1 y 15 caracteres alfanuméricos"
-                      onChange={(e) => setNombre(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <label
-                      htmlFor="color"
-                      className="text-sm text-slate-700 font-semibold"
-                    >
-                      Color:
-                    </label>
-                    <DropdownColores
-                      onColorSeleccionadoChange={
-                        handleColorSeleccionado
-                      }
-                      colorActual={etiqueta.color}
-                    />
-                  </div>
+                <div className="flex flex-col w-full gap-1">
+                  <label htmlFor="nombre" className={labelStyle}>
+                    Nombre
+                  </label>
+                  <input
+                    required
+                    className="h-8 border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100 text-xs"
+                    autoComplete="off"
+                    name="nombre"
+                    id="nombre"
+                    type="text"
+                    defaultValue={etiqueta.nombre}
+                    pattern="^[a-zA-Z0-9!@#$%^&*()_+\/\-\sáéíóúÁÉÍÓÚñÑ]{1,15}$"
+                    title="El nombre de la etiqueta debe tener entre 1 y 15 caracteres alfanuméricos"
+                    onChange={(e) => setNombre(e.target.value)}
+                  />
+                </div>
+                <div className="flex flex-col w-full gap-1">
+                  <label htmlFor="color" className={labelStyle}>
+                    Color
+                  </label>
+                  <DropdownColores
+                    onColorSeleccionadoChange={
+                      handleColorSeleccionado
+                    }
+                    colorActual={etiqueta.color}
+                  />
                 </div>
               </form>
+              <span className="flex flex-col gap-2 my-2">
+                <p className="w-full text-center text-xs">
+                  Previsualización de la nueva etiqueta
+                </p>
+                <div className="flex justify-center" id="tag">
+                  <Tag
+                    text={nombre}
+                    color={color}
+                    isRemovable={false}
+                    appearance="rounded"
+                  />
+                </div>
+              </span>
             </div>
-            <div className="w-full flex items-center justify-center">
-              <div className="flex gap-10 mt-8">
-                <button
-                  className="rounded-none hover:text-blue-500 text-sm"
-                  onClick={() => onClose()}
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  form="EditarEtiquetaForm"
-                  className="rounded-sm bg-jiraBlue text-white px-2 py-1 hover:bg-blue-500"
-                >
-                  <p className="text-sm">Aceptar cambios</p>
-                </button>
-              </div>
+            <div
+              className="flex items-center justify-end
+            w-full gap-10 lg:flex-row flex-col mt-9"
+            >
+              <Button onClick={onClose}>Cancelar</Button>
+              <Button
+                appearance="primary"
+                type="submit"
+                form="RegistrarEtiquetaForm"
+              >
+                Registrar etiqueta
+              </Button>
             </div>
           </div>
         </div>

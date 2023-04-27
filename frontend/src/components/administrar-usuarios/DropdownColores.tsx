@@ -50,7 +50,7 @@ const DropdownColores: FC<DropdownColoresProps> = ({
       value={color}
       name="color"
       id="dropdown-colores"
-      className={`w-44 h-8 bg-slate-100 rounded-md pl-2 hover:bg-gray-200 text-sm text-gray-600 font-medium focus:border-0`}
+      className={`w-full h-8 bg-slate-100 rounded-md pl-2 hover:bg-gray-200 text-sm text-gray-600 font-medium focus:border-0`}
     >
       {!colorActual && (
         <option disabled={true} value="">

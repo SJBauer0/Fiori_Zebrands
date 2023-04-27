@@ -16,6 +16,7 @@ import { getUsersContext, type Etiqueta } from '../local-contexts';
 import CheckCircleIcon from '@atlaskit/icon/glyph/check-circle';
 import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
 import { FlagContext } from '../../../contexts';
+import Button from '@atlaskit/button';
 
 const URI = `${
   import.meta.env.VITE_APP_BACKEND_URI
@@ -136,23 +137,24 @@ const ModalRegistrarUsuarios: FC<RegistrarUsuariosProps> = ({
   return (
     <>
       <div className="z-[1000] bg-blueRGBA fixed top-0 bottom-0 right-0 left-0 flex items-center justify-center">
-        <div className="p-10 bg-white rounded-xl flex flex-col">
+        <div className="p-10 bg-white rounded flex flex-col w-[50vw]">
           <div className="w-full flex flex-col items-center">
-            <div className="w-full text-xl font-bold mb-1 flex items-center justify-between">
-              <h4>Registrar usuario</h4>
-              <button className="flex" onClick={handleClose}>
-                <CrossIcon label="Cross Icon" />
-              </button>
+            <div className="w-full mb-1 flex items-center justify-between font-semibold text-base">
+              <h4>Registrar nuevo usuario</h4>
+              <div
+                className="flex items-center justify-center cursor-pointer p-1"
+                onClick={handleClose}
+              >
+                <CrossIcon label="cerrar modal" size="small" />
+              </div>
             </div>
-            <div className="w-full text-sm text-[#44546f] mb-5">
-              Registra un nuevo usuario en el sistema, una invitación
-              a iniciar sesión será enviada al correo ingresado.
-            </div>
-          </div>
-          <div className="w-full flex flex-col justify center">
-            <p className="font-bold text-left mb-4">
-              Detalles del nuevo usuario
+            <p className="w-full text-xs text-[#44546f] mb-5">
+              Después de registrar al usuario, se le hará llegar una
+              invitación por correo electrónico para ingresar a
+              RetroZeb.
             </p>
+          </div>
+          <div className="w-full flex flex-col justify center mt-2">
             <form
               onSubmit={handleSubmit}
               className="w-full"
@@ -168,11 +170,11 @@ const ModalRegistrarUsuarios: FC<RegistrarUsuariosProps> = ({
                   />
                 </div>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full">
                 <label htmlFor="correo" id="label-correo">
                   Correo
                 </label>
-                <div className="flex w-full gap-4">
+                <div className="flex w-full gap-2">
                   <input
                     required
                     pattern="^[a-zA-Z0-9._-]+"
@@ -182,9 +184,9 @@ const ModalRegistrarUsuarios: FC<RegistrarUsuariosProps> = ({
                     type="text"
                     name="correo"
                     id="input-correo"
-                    className="border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100"
+                    className="border-2 border-gray !w-full rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100"
                     autoComplete="off"
-                    placeholder="Ingresa el correo"
+                    placeholder="Ingresa el correo electrónico"
                   />
                   {otroDominio ? (
                     <>
@@ -204,19 +206,19 @@ const ModalRegistrarUsuarios: FC<RegistrarUsuariosProps> = ({
                         autoComplete="off"
                         placeholder="Ingresa el dominio"
                       />
-                      <button
-                        type="button"
+                      <Button
+                        appearance="subtle"
+                        className="!text-xs !items-center"
                         onClick={handleRegresarDropdown}
-                        className="w-fit whitespace-nowrap text-xs text-blue-500"
                       >
-                        Volver a elegir dominio
-                      </button>
+                        Volver a elegir un dominio
+                      </Button>
                     </>
                   ) : (
                     <select
                       onChange={handleDominioChange}
                       value={dominioCorreo}
-                      className=" w-full h-8 bg-[#F1F2F4] rounded-md pl-2 hover:bg-gray-200 text-sm text-gray-600 font-medium focus:border-0"
+                      className="w-full h-8 bg-[#F1F2F4] rounded-md pl-2 hover:bg-gray-200 text-sm text-gray-600 font-medium focus:border-0"
                     >
                       <option>@zeb.mx</option>
                       <option>@luuna.mx</option>
@@ -248,22 +250,18 @@ const ModalRegistrarUsuarios: FC<RegistrarUsuariosProps> = ({
               </div>
             </form>
           </div>
-          <div className="w-full flex items-center justify-end ">
-            <div className="flex gap-10 mt-12">
-              <button
-                className="rounded-none hover:text-blue-500 text-sm"
-                onClick={handleClose}
-              >
-                Cancelar
-              </button>
-              <button
-                type="submit"
-                form="RegistrarUsuarioForm"
-                className="rounded-sm bg-jiraBlue text-white px-2 py-1 hover:bg-blue-500"
-              >
-                <p className="text-sm">Registrar Usuario</p>
-              </button>
-            </div>
+          <div
+            className="flex items-center justify-end
+            w-full gap-10 lg:flex-row flex-col mt-7"
+          >
+            <Button onClick={handleClose}>Cancelar</Button>
+            <Button
+              appearance="primary"
+              type="submit"
+              form="RegistrarUsuarioForm"
+            >
+              Registrar usuario
+            </Button>
           </div>
         </div>
       </div>
