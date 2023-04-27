@@ -10,6 +10,7 @@ import Button from '@atlaskit/button';
 import CarouselDash from './CarouselDash';
 import { format, parseISO } from 'date-fns';
 import { BotonReporte, Spinner } from '../../components';
+import AstronautHappy from '@/assets/astronaut-happy.webp';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/retrospectivas`;
 
@@ -130,14 +131,19 @@ const Dashboard: FC = ({}) => {
                   )}
                 </span>
               )}
-              {
-                // Si no hay ninguna pendiente
-                retroPendientes.length === 0 && (
-                  <span className="text-xs text-gray-500">
-                    No tienes ninguna retrospectiva pendiente
+              {retroPendientes.length === 0 && (
+                <div className="w-full h-full flex flex-col items-center justify-center gap-4">
+                  <img
+                    alt=""
+                    src={AstronautHappy}
+                    className="w-[6.5rem] opacity-80"
+                  />
+                  <span className="text-[0.8rem] text-gray-500">
+                    ¡Muy bien! No tienes retrospectivas pendientes por
+                    el momento.
                   </span>
-                )
-              }
+                </div>
+              )}
             </div>
             <div className="w-full flex justify-end">
               <Button

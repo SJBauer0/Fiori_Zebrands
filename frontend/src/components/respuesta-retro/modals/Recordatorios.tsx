@@ -119,7 +119,7 @@ const Recordatorios: FC<RecordatoriosProps> = ({
                 </>
               ) : (
                 <p className="text-xs max-w-xl mb-3">
-                  ¡Muy bien! No tienes ninguna retrospectiva pendiente
+                  ¡Muy bien! No tienes más retrospectivas pendientes
                   de contestar.
                 </p>
               )}

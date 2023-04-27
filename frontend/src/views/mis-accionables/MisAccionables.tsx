@@ -25,7 +25,6 @@ export interface Accionable {
 }
 
 const MisAccionables: FC = ({}) => {
-  const [toggleUpdate, setToggleUpdate] = useState<boolean>(false);
   const { user } = useContext(userDataContext);
   const [isNewAccionableOpen, setIsNewAccionableOpen] =
     useState<boolean>(false);
@@ -45,12 +44,14 @@ const MisAccionables: FC = ({}) => {
     try {
       const response = await axios.get(`${URI}/${user?.id_usuario}`);
       setAccionables(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error('Error al obtener los accionables', error);
     }
   };
 
   const separarAccionables = async (accionables: any) => {
+    console.log(accionables);
     const prioridadBaja: Accionable[] = [];
     const prioridadMedia: Accionable[] = [];
     const prioridadAlta: Accionable[] = [];
@@ -88,6 +89,10 @@ const MisAccionables: FC = ({}) => {
   useEffect(() => {
     if (accionables.length > 0) {
       separarAccionables(accionables);
+    } else {
+      setPrioridadBaja([]);
+      setPrioridadMedia([]);
+      setPrioridadAlta([]);
     }
   }, [accionables]);
 
