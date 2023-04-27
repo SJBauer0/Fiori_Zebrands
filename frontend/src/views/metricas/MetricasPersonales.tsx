@@ -185,7 +185,7 @@ const MetricasPersonales: FC = ({}) => {
             {data2 && data2.length > 0 ? (
               <StackedBarChart data={data2} />
             ) : (
-              <p className="text-xs">
+              <p className="text-xs text-discovery">
                 No hay datos para graficar con los filtros de sprint
                 elegidos
               </p>
@@ -196,7 +196,7 @@ const MetricasPersonales: FC = ({}) => {
           {data && data.length > 0 ? (
             <PieChart data={data} />
           ) : (
-            <p className="text-xs">
+            <p className="text-xs text-discovery">
               No hay datos para graficar con los filtros de sprint
               elegidos
             </p>
@@ -211,7 +211,7 @@ const MetricasPersonales: FC = ({}) => {
                 lineColor="#388bff"
               />
             ) : (
-              <p className="text-xs">
+              <p className="text-xs text-discovery">
                 {nombre}, parece que no tienes issues asignados a
                 sprints, aún así puedes ver el estado de los story
                 points de tus issues.
@@ -222,7 +222,7 @@ const MetricasPersonales: FC = ({}) => {
             {data6 && data6.length > 0 ? (
               <ComposedChart data={data6} />
             ) : (
-              <p className="text-xs">
+              <p className="text-xs text-discovery">
                 {nombre}, parece que no tienes issues asignados a
                 sprints, aún así puedes ver el estado de los story
                 points de tus issues.
@@ -235,7 +235,7 @@ const MetricasPersonales: FC = ({}) => {
             {data4 && data4.length > 0 ? (
               <ComposedChart data={data4} />
             ) : (
-              <p className="text-xs">
+              <p className="text-xs text-discovery">
                 {nombre}, parece que no tienes issues asignados a
                 sprints, aún así puedes ver el estado de los story
                 points de tus issues.
@@ -250,7 +250,7 @@ const MetricasPersonales: FC = ({}) => {
                 lineColor="#388bff"
               />
             ) : (
-              <p className="text-xs">
+              <p className="text-xs text-discovery">
                 {nombre}, parece que no tienes issues asignados a
                 sprints, aún así puedes ver el estado de los story
                 points de tus issues.

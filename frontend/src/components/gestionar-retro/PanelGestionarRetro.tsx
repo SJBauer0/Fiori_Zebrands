@@ -9,7 +9,7 @@ const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/retrospectivas`;
 interface PanelGestionarRetroProps {}
 
 const divCardsStyle =
-  'flex flex-col gap-5 bg-[#ffffff] py-5 px-5 rounded-sm shadow-sm';
+  'flex flex-col gap-5 bg-[#ffffff] py-5 px-5 rounded-sm shadow-sm min-h-[60vh]';
 
 const PanelGestionarRetro: FC<PanelGestionarRetroProps> = ({}) => {
   const [retrosOngoing, setRetrosOngoing] = useState<
@@ -86,7 +86,9 @@ const PanelGestionarRetro: FC<PanelGestionarRetroProps> = ({}) => {
             );
           })
         ) : (
-          <p className="text-xs">No hay retrospectivas en curso.</p>
+          <p className="text-xs text-discovery">
+            No hay retrospectivas en curso.
+          </p>
         )}
       </div>
       <div className={divCardsStyle}>
@@ -111,7 +113,7 @@ const PanelGestionarRetro: FC<PanelGestionarRetroProps> = ({}) => {
             );
           })
         ) : (
-          <p className="text-xs">
+          <p className="text-xs text-discovery">
             No hay retrospectivas finalizadas.
           </p>
         )}

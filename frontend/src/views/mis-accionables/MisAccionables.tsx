@@ -5,6 +5,7 @@ import ErrorIcon from '@atlaskit/icon/glyph/error';
 import WarningIcon from '@atlaskit/icon/glyph/warning';
 import axios from 'axios';
 import { FC, useContext, useEffect, useState } from 'react';
+import HipchatMediaAttachmentCountIcon from '@atlaskit/icon/glyph/hipchat/media-attachment-count';
 import { Link } from 'react-router-dom';
 import Medal from '../../assets/medal.webp';
 import {
@@ -51,7 +52,6 @@ const MisAccionables: FC = ({}) => {
   };
 
   const separarAccionables = async (accionables: any) => {
-    console.log(accionables);
     const prioridadBaja: Accionable[] = [];
     const prioridadMedia: Accionable[] = [];
     const prioridadAlta: Accionable[] = [];
@@ -142,7 +142,7 @@ const MisAccionables: FC = ({}) => {
           </div>
 
           <div className="grid grid-cols-3 gap-3 pb-3 w-full">
-            <div className="flex flex-col gap-5 bg-[#ffffff] p-5 rounded-sm shadow-sm overflow-y-auto h-auto">
+            <div className="flex flex-col gap-5 bg-[#ffffff] p-5 rounded-sm shadow-sm overflow-y-auto h-auto min-h-[30vh]">
               <div className="flex items-center w-full">
                 <ErrorIcon
                   label="error"
@@ -150,7 +150,7 @@ const MisAccionables: FC = ({}) => {
                   primaryColor="#DE350B"
                 />
                 <p className="font-semibold flex flex-row text-sm text-danger ml-2">
-                  Prioridad Alta
+                  Prioridad alta
                 </p>
               </div>
               {prioridadAlta.length > 0 ? (
@@ -164,13 +164,13 @@ const MisAccionables: FC = ({}) => {
                   </>
                 ))
               ) : (
-                <p className="text-xs">
+                <p className="text-xs text-discovery">
                   No tienes accionables en prioridad alta.
                 </p>
               )}
             </div>
 
-            <div className="flex flex-col gap-5 bg-[#ffffff] py-5 px-5 rounded-sm shadow-sm overflow-y-auto max-h-[40rem]">
+            <div className="flex flex-col gap-5 bg-[#ffffff] py-5 px-5 rounded-sm shadow-sm overflow-y-auto min-h-[30vh]">
               <div className="flex items-center">
                 <WarningIcon
                   size="medium"
@@ -178,7 +178,7 @@ const MisAccionables: FC = ({}) => {
                   primaryColor="#CD742D"
                 />
                 <p className="font-semibold flex flex-row text-sm text-mediumDanger ml-2">
-                  Prioridad Media
+                  Prioridad media
                 </p>
               </div>
               {prioridadMedia.length > 0 ? (
@@ -190,21 +190,21 @@ const MisAccionables: FC = ({}) => {
                   />
                 ))
               ) : (
-                <p className="text-xs">
+                <p className="text-xs text-discovery">
                   No tienes accionables en prioridad media.
                 </p>
               )}
             </div>
 
-            <div className="flex flex-col gap-5 bg-[#ffffff] py-5 px-5 rounded-sm shadow-sm overflow-y-auto max-h-[40rem]">
+            <div className="flex flex-col gap-5 bg-[#ffffff] py-5 px-5 rounded-sm shadow-sm overflow-y-auto  min-h-[30vh]">
               <div className="flex items-center">
-                <CheckCircleIcon
+                <HipchatMediaAttachmentCountIcon
+                  label="bajo"
                   size="medium"
-                  label="Prioridad media"
-                  primaryColor="#4E9E70"
+                  primaryColor="#22A06B"
                 />
                 <p className="font-semibold flex flex-row text-sm text-green ml-2">
-                  Prioridad Baja
+                  Prioridad baja
                 </p>
               </div>
               {prioridadBaja.length > 0 ? (
@@ -216,7 +216,7 @@ const MisAccionables: FC = ({}) => {
                   />
                 ))
               ) : (
-                <p className="text-xs">
+                <p className="text-xs text-discovery">
                   No tienes accionables en prioridad baja.
                 </p>
               )}

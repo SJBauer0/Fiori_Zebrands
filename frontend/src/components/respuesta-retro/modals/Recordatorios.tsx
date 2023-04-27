@@ -5,7 +5,13 @@ import ErrorIcon from '@atlaskit/icon/glyph/error';
 import HipchatMediaAttachmentCountIcon from '@atlaskit/icon/glyph/hipchat/media-attachment-count';
 import WarningIcon from '@atlaskit/icon/glyph/warning';
 import axios from 'axios';
-import { FC, useCallback, useContext, useEffect, useState } from 'react';
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { questionsContext } from '../local-contexts';
 import BannerRetro from '../reusable/BannerRetro';
@@ -121,30 +127,54 @@ const Recordatorios: FC<RecordatoriosProps> = ({
                   en futuros Sprints.
                 </p>
               </div>
-              <div className="flex flex-col gap-3 font-medium">
-                {/* ! PROVISIONALMENTE SE USAN DATOS DE PROTOTIPO */}
-                <div className="flex items-center">
-                  <ErrorIcon label="urgente" primaryColor="#E34935" />
-                  <p className="flex flex-row text-xs text-danger">
-                    Tienes {prioridadAlta.length} accionables en alta prioridad
-                  </p>
+              {accionables.length > 0 ? (
+                <div className="flex flex-col gap-3 font-medium">
+                  <div className="flex items-center">
+                    <ErrorIcon
+                      label="urgente"
+                      primaryColor="#E34935"
+                    />
+                    <p className="flex flex-row text-xs text-danger">
+                      Tienes {prioridadAlta.length}{' '}
+                      {prioridadAlta.length === 1
+                        ? 'accionable'
+                        : 'accionables'}{' '}
+                      en prioridad alta
+                    </p>
+                  </div>
+                  <div className="flex flex-row items-center">
+                    <WarningIcon
+                      label="medio"
+                      primaryColor="#D97008"
+                    />
+                    <p className="text-xs text-mediumDanger flex items-center">
+                      Tienes {prioridadMedia.length}{' '}
+                      {prioridadMedia.length === 1
+                        ? 'accionable'
+                        : 'accionables'}{' '}
+                      en prioridad media
+                    </p>
+                  </div>
+                  <div className="flex flex-row items-center">
+                    <HipchatMediaAttachmentCountIcon
+                      label="bajo"
+                      primaryColor="#22A06B"
+                    />
+                    <p className="text-xs text-green">
+                      Tienes {prioridadBaja.length}{' '}
+                      {prioridadBaja.length === 1
+                        ? 'accionable'
+                        : 'accionables'}{' '}
+                      en prioridad baja
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-row items-center">
-                  <WarningIcon label="medio" primaryColor="#D97008" />
-                  <p className="text-xs text-mediumDanger flex items-center">
-                    Tienes {prioridadMedia.length} accionables en prioridad media
-                  </p>
-                </div>
-                <div className="flex flex-row items-center">
-                  <HipchatMediaAttachmentCountIcon
-                    label="bajo"
-                    primaryColor="#22A06B"
-                  />
-                  <p className="text-xs text-green">
-                    Tienes {prioridadBaja.length} accionable en prioridad baja
-                  </p>
-                </div>
-              </div>
+              ) : (
+                <p className="text-xs text-discovery">
+                  ¡Buen trabajo! No tienes ningún accionable
+                  pendiente.
+                </p>
+              )}
               <div className="flex justify-end">
                 <Link
                   to="/mis-accionables"
@@ -182,7 +212,7 @@ const Recordatorios: FC<RecordatoriosProps> = ({
                   </div>
                 </>
               ) : (
-                <p className="text-xs max-w-xl mb-3">
+                <p className="text-xs max-w-xl mb-3 text-discovery">
                   ¡Muy bien! No tienes más retrospectivas pendientes
                   de contestar.
                 </p>

@@ -107,7 +107,11 @@ const UsersTable: FC<UsersTableProps> = ({}) => {
   );
 
   if (userRows == null)
-    return <p className="text-xs">No hay usuarios para mostrar</p>;
+    return (
+      <p className="text-xs text-discovery">
+        No hay usuarios para mostrar
+      </p>
+    );
 
   return (
     <div className="bg-white rounded-sm w-full px-12 py-6 text-sm">

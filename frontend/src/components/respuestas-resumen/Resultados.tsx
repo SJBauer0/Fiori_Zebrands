@@ -152,7 +152,7 @@ const Resultados: FC<ResultadosProps> = ({
       {respuestas.length > 0 ? (
         <Case />
       ) : (
-        <p className="text-xs">
+        <p className="text-xs text-discovery">
           No hay respuestas registradas para esta pregunta.
         </p>
       )}

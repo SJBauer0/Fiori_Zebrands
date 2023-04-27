@@ -7,7 +7,7 @@ import TextArea from '@atlaskit/textarea';
 import { HelperMessage, ErrorMessage } from '@atlaskit/form';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import { FC, useContext, useState } from 'react';
+import { FC, useContext, useState, useEffect } from 'react';
 import { FlagContext, userDataContext } from '../../../contexts';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/accionables`;
@@ -133,6 +133,14 @@ const ModalNuevoAccionable: FC<ModalNuevoAccionable> = ({
       }
     }
   };
+
+  useEffect(() => {
+    document.body.classList.add('modal-open');
+
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, []);
 
   return (
     <Blanket isTinted={true}>

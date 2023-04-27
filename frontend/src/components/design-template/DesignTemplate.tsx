@@ -74,7 +74,7 @@ const DesignTemplate: FC<DesignTemplateProps> = ({
             {buttons}
           </div>
         </div>
-        <div className="bg-background w-full h-auto rounded-lg p-2 lg:p-7 text-paragraph m-2">
+        <div className="bg-background w-full h-auto rounded-lg p-2 lg:p-7 text-paragraph m-2 min-h-[65vh]">
           {children}
         </div>
         <p className="text-xs text-slate-600 mb-5 w-full text-center">

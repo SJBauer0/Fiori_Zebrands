@@ -1,28 +1,23 @@
+import AstronautHappy from '@/assets/astronaut-happy.webp';
+import Button from '@atlaskit/button';
+import ArrowRightIcon from '@atlaskit/icon/glyph/arrow-right';
+import ErrorIcon from '@atlaskit/icon/glyph/error';
+import HipchatMediaAttachmentCountIcon from '@atlaskit/icon/glyph/hipchat/media-attachment-count';
+import WarningIcon from '@atlaskit/icon/glyph/warning';
+import axios from 'axios';
+import { format, parseISO } from 'date-fns';
 import { FC, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { BotonReporte, Spinner } from '../../components';
 import DesignTemplate from '../../components/design-template/DesignTemplate';
-import { userDataContext } from '../../contexts';
 import BannerRetro from '../../components/respuesta-retro/reusable/BannerRetro';
-import type { Retrospectiva } from '../mis-retrospectivas/MisRetrospectivas';
-import ArrowRightIcon from '@atlaskit/icon/glyph/arrow-right';
-import axios from 'axios';
-import Button from '@atlaskit/button';
-import CarouselDash from './CarouselDash';
-import { format, parseISO } from 'date-fns';
-import {
-  BotonReporte,
-  Spinner,
-  BoxAccionable,
-} from '../../components';
+import { userDataContext } from '../../contexts';
 import { Accionable } from '../mis-accionables/MisAccionables';
-import ErrorIcon from '@atlaskit/icon/glyph/error';
-import WarningIcon from '@atlaskit/icon/glyph/warning';
-import CheckCircleIcon from '@atlaskit/icon/glyph/check-circle';
-import AstronautHappy from '@/assets/astronaut-happy.webp';
+import type { Retrospectiva } from '../mis-retrospectivas/MisRetrospectivas';
+import CarouselDash from './CarouselDash';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/retrospectivas`;
 const URIA = `${import.meta.env.VITE_APP_BACKEND_URI}/accionables`;
-
 
 const Dashboard: FC = ({}) => {
   const { user } = useContext(userDataContext);
@@ -159,46 +154,52 @@ const Dashboard: FC = ({}) => {
         </div>
         <div className="flex flex-col gap-5 w-full md:w-6/12">
           <div className=" bg-[#ffffff] p-6 rounded-sm gap-8 shadow-sm h-[50%]">
-            <h2 className="font-semibold w-full">Mis Accionables</h2>
-            <div className="row-start-2 row-span-2 gap-1 w-full py-3">
+            <h2 className="font-semibold w-full">Mis accionables</h2>
+            <div className="row-start-2 row-span-2 gap-1 w-full py-3 flex flex-col justify-center items-center">
               <div className="flex flex-row gap-10">
                 <div className="flex flex-col gap-5 bg-[#ffffff] p-5 rounded-sm shadow-sm overflow-y-auto h-auto">
-                  <div className="flex flex-col gap-4 align-middle items-center w-full">
+                  <div className="flex flex-col gap-1 justify-center items-center w-full">
                     <ErrorIcon
                       label="error"
                       size="large"
                       primaryColor="#DE350B"
                     />
                     <p className="font-semibold text-center flex flex-row text-sm text-danger ml-2">
-                      Prioridad Alta
+                      Prioridad alta
                     </p>
-                    {prioridadAlta.length}
+                    <p className="mt-4 font-medium">
+                      {prioridadAlta.length}
+                    </p>
                   </div>
                 </div>
                 <div className="flex flex-col gap-5 bg-[#ffffff] py-5 px-5 rounded-sm shadow-sm overflow-y-auto max-h-[40rem]">
-                  <div className="flex flex-col gap-4 align-middle items-center w-full">
+                  <div className="flex flex-col gap-1 align-middle items-center w-full">
                     <WarningIcon
                       size="large"
                       label="Prioridad media"
                       primaryColor="#CD742D"
                     />
                     <p className="font-semibold text-center flex flex-row text-sm text-mediumDanger ml-2">
-                      Prioridad Media
+                      Prioridad media
                     </p>
-                    {prioridadMedia.length}
+                    <p className="mt-4 font-medium">
+                      {prioridadMedia.length}
+                    </p>
                   </div>
                 </div>
                 <div className="flex flex-col gap-5 bg-[#ffffff] py-5 px-5 rounded-sm shadow-sm overflow-y-auto max-h-[40rem]">
-                  <div className="flex flex-col gap-4 align-middle items-center w-full">
-                    <CheckCircleIcon
+                  <div className="flex flex-col gap-1 align-middle items-center w-full">
+                    <HipchatMediaAttachmentCountIcon
+                      label="bajo"
                       size="large"
-                      label="Prioridad media"
-                      primaryColor="#4E9E70"
+                      primaryColor="#22A06B"
                     />
                     <p className="font-semibold text-center flex flex-row text-sm text-green ml-2">
-                      Prioridad Baja
+                      Prioridad baja
                     </p>
-                    {prioridadBaja.length}
+                    <p className="mt-4 font-medium">
+                      {prioridadBaja.length}
+                    </p>
                   </div>
                 </div>
               </div>
