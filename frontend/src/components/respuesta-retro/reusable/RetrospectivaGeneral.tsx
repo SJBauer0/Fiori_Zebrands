@@ -95,14 +95,14 @@ const RetrospectivaGeneral: FC<RetrospectivaGeneralProps> = ({
       onClick={handleOnClick}
     >
       <div
-        className={`flex flex-col p-5 w-full gap-1 rounded bg-white ${
+        className={`flex flex-col px-5 py-3 w-full gap-1 rounded bg-white ${
           !isInResponder
             ? 'hover:bg-[#fafbfc] border border-solid border-gray'
             : 'shadow-sm'
         }`}
       >
         <div className="flex w-full flex-col lg:flex-row lg:justify-between">
-          <div className="gap-3 flex flex-col  lg:flex-row">
+          <div className="gap-3 flex flex-col lg:flex-row lg:items-center">
             {!noIcon &&
               (completada ? (
                 <CheckIcon
@@ -153,14 +153,16 @@ const RetrospectivaGeneral: FC<RetrospectivaGeneralProps> = ({
           </div>
         </div>
         <span className="w-full flex justify-between">
-          <p className="text-xs text-discovery font-medium">
+          <p className="text-xs text-discovery font-medium mt-1">
             Respuestas registradas: {respuestas ? respuestas : 0}
           </p>
         </span>
-        <div className="flex text-[0.8rem] mt-2">
-          <p>{descripcion}</p>
-        </div>
-        <div className="flex flex-col gap-2 lg:flex-row text-[0.7rem] lg:justify-between mt-3">
+        {descripcion && (
+          <div className="flex text-[0.8rem] mt-2">
+            <p>{descripcion}</p>
+          </div>
+        )}
+        <div className="flex flex-col gap-2 lg:flex-row text-[0.7rem] lg:justify-between mt-3 lg:items-center">
           <p>Fecha de inicio: {fechaInicioFormat}</p>
           {fechaFinFormat && !enCurso && (
             <p>Fecha de fin: {fechaFinFormat}</p>

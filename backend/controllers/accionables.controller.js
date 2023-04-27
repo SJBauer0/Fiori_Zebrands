@@ -53,9 +53,11 @@ const postAccionable = async (req, res) => {
 const solveAccionable = async (req, res) => {
   try {
     const { key_jira, id } = req.params;
-    Accionables.solveAccionable(key_jira);
-    Accionables.deleteAccionable(id);
-    res.end();
+    await Accionables.solveAccionable(key_jira);
+    await Accionables.deleteAccionable(id);
+    res.json({
+      message: 'Accionable resuelto y eliminado de la base de datos',
+    });
   } catch (err) {
     console.log(err);
   }

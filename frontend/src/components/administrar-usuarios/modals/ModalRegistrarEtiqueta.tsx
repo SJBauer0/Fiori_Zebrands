@@ -7,6 +7,7 @@ import { FC, FormEvent, useContext, useState } from 'react';
 import { FlagContext } from '../../../contexts';
 import DropdownColores from '../DropdownColores';
 import { getEtiquetasContext } from '../local-contexts';
+import Button from '@atlaskit/button';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/etiquetas/`;
 
@@ -15,13 +16,16 @@ interface RegistrarEtiquetaProps {
   onClose: () => void;
 }
 
+const labelStyle =
+  "after:content-['*'] after:text-[#ae2a19] text-xs font-semibold text-label";
+
 const ModalRegistrarEtiqueta: FC<RegistrarEtiquetaProps> = ({
   show,
   onClose,
 }) => {
   const { addFlag } = useContext(FlagContext);
   const { getEtiquetas } = useContext(getEtiquetasContext);
-  const [nombre, setNombre] = useState('');
+  const [nombre, setNombre] = useState('Etiqueta');
   const [color, setColor] = useState<TagColor>('standard');
 
   const handleColorSeleccionado = (color: TagColor) => {
@@ -63,11 +67,11 @@ const ModalRegistrarEtiqueta: FC<RegistrarEtiquetaProps> = ({
       }
     }
     setColor('standard');
-    setNombre('');
+    setNombre('Etiqueta');
   };
 
   const handleClose = () => {
-    setNombre('');
+    setNombre('Etiqueta');
     setColor('standard');
     onClose();
   };
@@ -78,90 +82,80 @@ const ModalRegistrarEtiqueta: FC<RegistrarEtiquetaProps> = ({
   return (
     <>
       <div className="z-[1000] bg-blueRGBA fixed top-0 bottom-0 right-0 left-0 flex items-center justify-center">
-        <div className="p-10 bg-white rounded-xl flex flex-col">
+        <div className="p-10 bg-white rounded flex flex-col w-[40vw]">
           <div className="w-full flex flex-col items-center">
-            <div className="w-full text-xl font-bold mb-1 flex items-center justify-between">
-              <h4>Registrar etiqueta</h4>
-              <button className="flex" onClick={handleClose}>
-                <CrossIcon label="Cross Icon" />
-              </button>
-            </div>
-            <div className="w-full text-sm text-[#44546f] mb-5">
-              Registra una nueva etiqueta, esta podrá ser asignada a
-              un usuario <br /> para agilizar el proceso de asignación
-              de retrospectivas.
-            </div>
-          </div>
-          <div className="w-full flex flex-col justify center">
-            <p className="font-bold text-left mb-4">
-              Detalles de la nueva etiqueta
-            </p>
-            <div className="flex justify-center" id="tag">
-              <Tag
-                text={nombre}
-                color={color}
-                isRemovable={false}
-                appearance="rounded"
-              />
-            </div>
-            <form
-              onSubmit={handleSubmit}
-              className="w-full"
-              id="RegistrarEtiquetaForm"
-            >
-              <div className="flex gap-10">
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="nombre"
-                    className="text-sm text-slate-700 font-semibold after:content-['*'] after:text-red-700"
-                  >
-                    Nombre
-                  </label>
-                  <input
-                    required
-                    name="nombre"
-                    className="h-8 border-2 border-gray0 rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100"
-                    autoComplete="off"
-                    id="nombre"
-                    type="text"
-                    //el siguiente pattern permite letras, espacios, números y los siguientes caracteres especiales: !@#$%^&*()_+-/, no puede pasar de 15 caracteres, ni empezar con un espacio
-                    pattern="^[a-zA-Z0-9!@#$%^&*()_+-/,]{1,15}$"
-                    title="El nombre de la etiqueta debe tener entre 1 y 15 caracteres alfanuméricos"
-                    onChange={(e) => setNombre(e.target.value)}
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="color"
-                    className="text-sm text-slate-700 font-semibold after:content-['*'] after:text-red-700"
-                  >
-                    Color
-                  </label>
-                  <DropdownColores
-                    onColorSeleccionadoChange={
-                      handleColorSeleccionado
-                    }
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div className="w-full flex items-center justify-center">
-            <div className="flex gap-10 mt-12">
-              <button
-                className="rounded-none hover:text-blue-500 text-sm"
+            <div className="w-full mb-1 flex items-center justify-between font-semibold text-base">
+              <h4>Registrar nueva etiqueta</h4>
+              <div
+                className="flex items-center justify-center cursor-pointer p-1"
                 onClick={handleClose}
               >
-                Cancelar
-              </button>
-              <button
-                type="submit"
-                form="RegistrarEtiquetaForm"
-                className="rounded-sm bg-jiraBlue text-white px-2 py-1 hover:bg-blue-500"
-              >
-                <p className="text-sm">Registrar Etiqueta</p>
-              </button>
+                <CrossIcon label="cerrar modal" size="small" />
+              </div>
             </div>
+            <p className="w-full text-xs text-[#44546f] mb-5">
+              La nueva etiqueta podrá ser asignada a un usuario para
+              agilizar el proceso de asignación de retrospectivas.
+            </p>
+          </div>
+          <div className="w-full flex flex-col gap-7 mt-2">
+            <form
+              onSubmit={handleSubmit}
+              className="w-full flex flex-col items-center justify-center gap-6"
+              id="RegistrarEtiquetaForm"
+            >
+              <div className="flex flex-col w-full gap-1">
+                <label htmlFor="nombre" className={labelStyle}>
+                  Nombre
+                </label>
+                <input
+                  required
+                  name="nombre"
+                  className="h-8 border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100 text-sm"
+                  autoComplete="off"
+                  id="nombre"
+                  type="text"
+                  placeholder='Ej: "Front-End"'
+                  pattern="^[a-zA-Z0-9!@#$%^&*()_+\-/]{1,15}$"
+                  title="El nombre de la etiqueta debe tener entre 1 y 15 caracteres alfanuméricos"
+                  onChange={(e) => setNombre(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col w-full gap-1">
+                <label htmlFor="color" className={labelStyle}>
+                  Color
+                </label>
+                <DropdownColores
+                  onColorSeleccionadoChange={handleColorSeleccionado}
+                />
+              </div>
+            </form>
+            <span className="flex flex-col gap-2 my-2">
+              <p className="w-full text-center text-xs">
+                Previsualización de la etiqueta
+              </p>
+              <div className="flex justify-center" id="tag">
+                <Tag
+                  text={nombre}
+                  color={color}
+                  isRemovable={false}
+                  appearance="rounded"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            className="flex items-center justify-end
+            w-full gap-10 lg:flex-row flex-col mt-9"
+          >
+            <Button onClick={handleClose}>Cancelar</Button>
+            <Button
+              appearance="primary"
+              type="submit"
+              form="RegistrarEtiquetaForm"
+            >
+              Registrar etiqueta
+            </Button>
           </div>
         </div>
       </div>

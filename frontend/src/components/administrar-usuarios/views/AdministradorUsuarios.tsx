@@ -28,7 +28,7 @@ const AdministradorUsuarios = () => {
             appearance="primary"
             iconBefore={<AddIcon label="" />}
           >
-            Registrar usuario
+            Nuevo usuario
           </Button>
         </>
       }

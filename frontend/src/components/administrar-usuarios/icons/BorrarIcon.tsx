@@ -6,9 +6,13 @@ import ModalBorrarUsuarios from '../modals/ModalBorrarUsuarios';
 
 interface BorrarIconProps {
   idUsuario: number;
+  nombreUsuario: string;
 }
 
-const BorrarIcon: FC<BorrarIconProps> = ({ idUsuario }) => {
+const BorrarIcon: FC<BorrarIconProps> = ({
+  idUsuario,
+  nombreUsuario,
+}) => {
   const { user } = useContext(userDataContext);
   const [color, setColor] = useState('#42526e');
   const [isOpen, setIsOpen] = useState(false);
@@ -50,6 +54,7 @@ const BorrarIcon: FC<BorrarIconProps> = ({ idUsuario }) => {
         </a>
       </button>
       <ModalBorrarUsuarios
+        nombre={nombreUsuario}
         show={isOpen}
         onClose={() => setIsOpen(false)}
         id={idUsuario}

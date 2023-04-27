@@ -18,6 +18,7 @@ import { Accionable } from '../mis-accionables/MisAccionables';
 import ErrorIcon from '@atlaskit/icon/glyph/error';
 import WarningIcon from '@atlaskit/icon/glyph/warning';
 import CheckCircleIcon from '@atlaskit/icon/glyph/check-circle';
+import AstronautHappy from '@/assets/astronaut-happy.webp';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/retrospectivas`;
 const URIA = `${import.meta.env.VITE_APP_BACKEND_URI}/accionables`;
@@ -249,14 +250,19 @@ const Dashboard: FC = ({}) => {
                   )}
                 </span>
               )}
-              {
-                // Si no hay ninguna pendiente
-                retroPendientes.length === 0 && (
-                  <span className="text-xs text-gray-500">
-                    No tienes ninguna retrospectiva pendiente
+              {retroPendientes.length === 0 && (
+                <div className="w-full h-full flex flex-col items-center justify-center gap-4">
+                  <img
+                    alt=""
+                    src={AstronautHappy}
+                    className="w-[6.5rem] opacity-80"
+                  />
+                  <span className="text-[0.8rem] text-gray-500">
+                    ¡Muy bien! No tienes retrospectivas pendientes por
+                    el momento.
                   </span>
-                )
-              }
+                </div>
+              )}
             </div>
             <div className="w-full flex justify-end">
               <Button

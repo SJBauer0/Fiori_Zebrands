@@ -25,7 +25,6 @@ export interface Accionable {
 }
 
 const MisAccionables: FC = ({}) => {
-  const [toggleUpdate, setToggleUpdate] = useState<boolean>(false);
   const { user } = useContext(userDataContext);
   const [isNewAccionableOpen, setIsNewAccionableOpen] =
     useState<boolean>(false);
@@ -45,12 +44,14 @@ const MisAccionables: FC = ({}) => {
     try {
       const response = await axios.get(`${URI}/${user?.id_usuario}`);
       setAccionables(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error('Error al obtener los accionables', error);
     }
   };
 
   const separarAccionables = async (accionables: any) => {
+    console.log(accionables);
     const prioridadBaja: Accionable[] = [];
     const prioridadMedia: Accionable[] = [];
     const prioridadAlta: Accionable[] = [];
@@ -88,6 +89,10 @@ const MisAccionables: FC = ({}) => {
   useEffect(() => {
     if (accionables.length > 0) {
       separarAccionables(accionables);
+    } else {
+      setPrioridadBaja([]);
+      setPrioridadMedia([]);
+      setPrioridadAlta([]);
     }
   }, [accionables]);
 
@@ -115,7 +120,7 @@ const MisAccionables: FC = ({}) => {
                     son mejores que todos aquellos grandes que se
                     planean.
                   </h3>
-                  <p className="text-xs mt-1">
+                  <p className="text-sm mt-1">
                     Debes completar los accionables que te habías
                     propuesto, de esta forma podrás ver tu progreso y
                     el de tu equipo desde otra perspectiva.
@@ -125,7 +130,7 @@ const MisAccionables: FC = ({}) => {
                   Si lo deseas, puedes revisar directamente tu
                   progreso en Jira haciendo{' '}
                   <Link
-                    className="text-blue-500 hover:text-blue-800"
+                    className="text-link underline"
                     to="https://zebrands.atlassian.net"
                     target="_blank"
                   >

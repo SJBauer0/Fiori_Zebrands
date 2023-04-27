@@ -14,9 +14,7 @@ module.exports = class Accionable {
   }
 
   static fetchAll() {
-    return db.execute(
-      'SELECT * FROM `accionables` ORDER By createdAt ASC'
-    );
+    return db.execute('SELECT * FROM accionables');
   }
 
   static createAccionable(id_usuario, accionable, fecha, key_jira) {
@@ -57,7 +55,7 @@ module.exports = class Accionable {
   static getAccionablesByUserId(id_usuario) {
     return db.execute(
       `
-        SELECT id, descripcion, fecha_esperada FROM accionables
+        SELECT id, descripcion, fecha_esperada, key_jira, createdAt FROM accionables
         WHERE id_usuario = ?
       `,
       [id_usuario]
@@ -67,7 +65,7 @@ module.exports = class Accionable {
   static getAccionableInfo(id) {
     return db.execute(
       `
-        SELECT *FROM accionables 
+        SELECT * FROM accionables 
         WHERE id = ?
       `,
       [id]

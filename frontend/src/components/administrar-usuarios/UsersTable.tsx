@@ -27,13 +27,19 @@ const UsersTable: FC<UsersTableProps> = ({}) => {
       isHighlighted: false,
       cells: [
         {
-          key: `nombre-${usuario.nombre}-${usuario.id}`,
+          key: `nombre-${
+            usuario.nombre ||
+            'Nuevo usuario (sin autenticar con Google)'
+          }-${usuario.id}`,
           content: (
             <span className="flex items-center gap-2 ml-3 w-full">
               <Avatar src={usuario.foto} size="small" />
               <p className="w-full text-sm">
-                {usuario.nombre}
-                {user?.id_usuario === usuario.id ? ' (Tú)' : ''}
+                {usuario.nombre ||
+                  'Nuevo usuario (sin autenticar con Google)'}
+                {user?.id_usuario === usuario.id && (
+                  <span className="text-information"> (Tú)</span>
+                )}
               </p>
             </span>
           ),
@@ -89,7 +95,10 @@ const UsersTable: FC<UsersTableProps> = ({}) => {
 
           content: (
             <div className="flex justify-center">
-              <BorrarIcon idUsuario={usuario.id} />
+              <BorrarIcon
+                idUsuario={usuario.id}
+                nombreUsuario={usuario.nombre}
+              />
             </div>
           ),
         },
@@ -97,7 +106,8 @@ const UsersTable: FC<UsersTableProps> = ({}) => {
     })
   );
 
-  if (userRows == null) return <div>Mi verga</div>;
+  if (userRows == null)
+    return <p className="text-xs">No hay usuarios para mostrar</p>;
 
   return (
     <div className="bg-white rounded-sm w-full px-12 py-6 text-sm">

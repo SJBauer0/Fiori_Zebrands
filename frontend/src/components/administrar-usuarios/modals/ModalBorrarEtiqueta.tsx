@@ -6,6 +6,7 @@ import axios from 'axios';
 import { FC, useContext } from 'react';
 import { FlagContext } from '../../../contexts';
 import { getEtiquetasContext } from '../local-contexts';
+import CrossIcon from '@atlaskit/icon/glyph/cross';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/etiquetas/`;
 
@@ -59,16 +60,24 @@ const ModalBorrarEtiqueta: FC<GestionarEtiquetasProps> = ({
 
   return (
     <div className="z-[1000] bg-blueRGBA fixed top-0 bottom-0 right-0 left-0 flex items-center justify-center">
-      <div className="p-10 bg-white rounded-xl flex flex-col gap-4">
+      <div className="flex flex-col bg-white rounded py-12 px-10 gap-8 items-center justify-center drop-shadow-lg max-w-[40vw]">
         <div className="w-full flex flex-col items-center">
-          <div className="w-full text-xl font-bold flex items-center justify-between">
-            <h4 className="text-xl text-center">
-              ¿Estás seguro de que deseas borrar la etiqueta?
-            </h4>
+          <div
+            className="flex w-full absolute top-0 justify-end p-4"
+            onClick={onClose}
+          >
+            <div className="flex items-center justify-center cursor-pointer p-1">
+              <CrossIcon label="cerrar modal" size="small" />
+            </div>
+          </div>
+          <div className="flex flex-col justify-center items-center gap-3 relative">
+            <h3 className="font-bold text-modalSoft text-xl text-center">
+              ¿Estás seguro que deseas eliminar la etiqueta?
+            </h3>
           </div>
         </div>
 
-        <div className="flex gap-1 items-center justify-center">
+        <div className="w-full flex gap-2 items-center justify-center px-6">
           <WarningIcon label="warning" primaryColor="#FF0000" />
           <p className="text-xs text-textNormal">
             Se eliminará también la asignación de los usuarios a esta
@@ -76,16 +85,19 @@ const ModalBorrarEtiqueta: FC<GestionarEtiquetasProps> = ({
           </p>
         </div>
 
-        <div className="w-full flex items-center justify-center">
-          <div className="flex gap-10">
-            <Button onClick={() => onClose()}>Cancelar</Button>
-            <Button
-              appearance="danger"
-              onClick={() => handleDelete(id.id)}
-            >
-              Confirmar
-            </Button>
-          </div>
+        <div
+          className="flex items-center justify-center
+            w-full gap-8 mt-2 scale-[0.9]"
+        >
+          <Button appearance="subtle" onClick={onClose}>
+            Cancelar
+          </Button>
+          <Button
+            appearance="danger"
+            onClick={() => handleDelete(id.id)}
+          >
+            Eliminar etiqueta
+          </Button>
         </div>
       </div>
     </div>

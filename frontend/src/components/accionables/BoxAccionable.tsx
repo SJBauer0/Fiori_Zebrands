@@ -1,16 +1,15 @@
-import EmojiFrequentIcon from '@atlaskit/icon/glyph/emoji/frequent';
-import HipchatChevronDownIcon from '@atlaskit/icon/glyph/hipchat/chevron-down';
-import { FC, useState, useContext, useEffect, useRef } from 'react';
-import type { Accionable } from '../../views/mis-accionables/MisAccionables';
-import ProgressBar from './ProgressBar';
-import { format, parseISO } from 'date-fns';
 import CheckCircleIcon from '@atlaskit/icon/glyph/check-circle';
 import EditorDoneIcon from '@atlaskit/icon/glyph/editor/done';
-import axios from 'axios';
 import EditorErrorIcon from '@atlaskit/icon/glyph/editor/error';
-import { FlagContext } from '../../contexts';
+import EmojiFrequentIcon from '@atlaskit/icon/glyph/emoji/frequent';
+import HipchatChevronDownIcon from '@atlaskit/icon/glyph/hipchat/chevron-down';
+import axios from 'axios';
+import { format, parseISO } from 'date-fns';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import { Tooltip } from 'react-tooltip';
-import Button from '@atlaskit/button';
+import { FlagContext } from '../../contexts';
+import type { Accionable } from '../../views/mis-accionables/MisAccionables';
+import ProgressBar from './ProgressBar';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/accionables`;
 
@@ -26,8 +25,14 @@ function calcularDiasFaltantes(fechaLimite: string): number {
 }
 
 const formatDate = (date: string) => {
-  return format(parseISO(date), 'dd/MM/yyyy');
+  try {
+    return format(parseISO(date), 'dd/MM/yyyy');
+  } catch (error) {
+    console.error('Error al formatear la fecha:', date, error);
+    return 'Fecha no válida';
+  }
 };
+
 interface BoxAccionableProps {
   accionable: Accionable;
   getAccionables: () => void;
@@ -56,14 +61,14 @@ const BoxAccionable: FC<BoxAccionableProps> = ({
       );
       getAccionables();
       addFlag(
-        'El accionable se ha marcado como completado exitosamente.',
+        '¡Buen trabajo! Tu accionable se ha marcado como completado exitosamente.',
         CheckCircleIcon,
         'success'
       );
     } catch (error) {
       console.log(error);
       addFlag(
-        'Hubo un error al intentar marcar el accionable como completado. Intente de nuevo más tarde.',
+        '¡Oh no! Hubo un error al intentar marcar el accionable como completado. Intente de nuevo más tarde.',
         EditorErrorIcon,
         'error'
       );
@@ -101,6 +106,9 @@ const BoxAccionable: FC<BoxAccionableProps> = ({
     >
       <div className="flex items-center justify-between w-full">
         <p className="text-sm font-semibold text-textNormal">
+          <span className="font-normal pr-1 text-slate-500">
+            {accionable.key_jira}
+          </span>{' '}
           {accionable.descripcion}
         </p>
         <div className="flex items-center justify-end gap-[0.1rem]">

@@ -63,16 +63,17 @@ exports.deleteUsuarioById = async (req, res, next) => {
   }
 };
 
-exports.updateUsuarioById = (req, res, next) => {
+exports.updateUsuarioById = async (req, res, next) => {
   const usuarioId = req.params.id;
   const { nombre, rol, etiquetas, id_jira } = req.body;
   try {
-    Usuario.updateUsuarioById(usuarioId, nombre, rol, id_jira);
-    UsuarioEtiqueta.deleteEtiquetasUsuario(usuarioId);
+    await Usuario.updateUsuarioById(usuarioId, nombre, rol, id_jira);
+    await UsuarioEtiqueta.deleteEtiquetasUsuario(usuarioId);
     for (let etiqueta of etiquetas) {
-      Etiqueta.getEtiquetaById(etiqueta.id).then((etiquetaObj) => {
-        UsuarioEtiqueta.createUsuarioEtiqueta(usuarioId, etiqueta.id);
-      });
+      await UsuarioEtiqueta.createUsuarioEtiqueta(
+        usuarioId,
+        etiqueta.id
+      );
     }
     res.json({ message: 'Usuario actualizado correctamente.' });
   } catch (error) {
