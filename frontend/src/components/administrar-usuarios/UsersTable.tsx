@@ -27,13 +27,19 @@ const UsersTable: FC<UsersTableProps> = ({}) => {
       isHighlighted: false,
       cells: [
         {
-          key: `nombre-${usuario.nombre}-${usuario.id}`,
+          key: `nombre-${
+            usuario.nombre ||
+            'Nuevo usuario (sin autenticar con Google)'
+          }-${usuario.id}`,
           content: (
             <span className="flex items-center gap-2 ml-3 w-full">
               <Avatar src={usuario.foto} size="small" />
               <p className="w-full text-sm">
-                {usuario.nombre}
-                {user?.id_usuario === usuario.id ? ' (Tú)' : ''}
+                {usuario.nombre ||
+                  'Nuevo usuario (sin autenticar con Google)'}
+                {user?.id_usuario === usuario.id && (
+                  <p className="text-information">(Tú)</p>
+                )}
               </p>
             </span>
           ),
