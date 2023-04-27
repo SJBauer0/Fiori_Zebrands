@@ -6,6 +6,7 @@ const cors = require('cors');
 const passport = require('passport');
 const authRoutes = require('./auth/index');
 const cookieSession = require('cookie-session');
+const validSession = require('./auth/validSession');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,12 +42,14 @@ app.get('/api', (req, res, next) => {
   res.json({ message: 'Fiori' });
 });
 
-app.use(authRoutes);
+app.use(validSession, authRoutes);
 
 app.use((err, req, res, next) => {
   if (err.message === 'UserNotFound') {
-    req.session.destroy();
-    res.redirect('/api');
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid');
+      res.redirect('/api');
+    });
   } else {
     next(err);
   }

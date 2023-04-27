@@ -1,7 +1,7 @@
 import React, { FC, createContext, useState, useEffect } from 'react';
 import CryptoJS from 'crypto-js';
 import Cookies from 'js-cookie';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 const SECRET_KEY_1 =
   import.meta.env.VITE_APP_COOKIE_KEY_1 || 'secret1';
@@ -86,7 +86,7 @@ const UserContext: FC<UserContextProps> = ({ children }) => {
       SECRET_KEY_1,
       SECRET_KEY_2
     );
-    Cookies.set('user', encryptedData);
+    Cookies.set('user', encryptedData, { expires: 1 });
   };
 
   const getUser = async () => {
@@ -103,9 +103,18 @@ const UserContext: FC<UserContextProps> = ({ children }) => {
         setUser(response.data);
         setEncryptedUserCookie(response.data);
       }
-    } catch (err) {
-      if (hasAttemptedFetch)
+    } catch (error: unknown) {
+      if (
+        error &&
+        (error as AxiosError).response &&
+        (error as AxiosError).response!.status === 401
+      ) {
+        setSessionExpired(true);
+        Cookies.remove('user');
+        setUser(null);
+      } else if (hasAttemptedFetch) {
         console.log('No se autenticó correctamente');
+      }
     } finally {
       setHasAttemptedFetch(true);
     }

@@ -106,7 +106,6 @@ const ModalNuevoAccionable: FC<ModalNuevoAccionable> = ({
         await axios.post(URI, bodyDB);
 
         getAccionables();
-        setIsModalOpen(false);
         addFlag(
           'Muy bien! Tu accionable se ha registrado y agregado correctamente al Backlog de Jira.',
           CheckCircleIcon,
@@ -129,6 +128,7 @@ const ModalNuevoAccionable: FC<ModalNuevoAccionable> = ({
           );
         }
       } finally {
+        setIsModalOpen(false);
         setIsPosting(false);
       }
     }
