@@ -6,7 +6,6 @@ const cors = require('cors');
 const passport = require('passport');
 const authRoutes = require('./auth/index');
 const cookieSession = require('cookie-session');
-const validSession = require('./auth/validSession');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,8 +36,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(validSession);
 
 app.get('/api', (req, res, next) => {
   res.json({ message: 'Fiori' });
