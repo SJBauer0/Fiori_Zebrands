@@ -184,7 +184,7 @@ const ModalRegistrarUsuarios: FC<RegistrarUsuariosProps> = ({
                     type="text"
                     name="correo"
                     id="input-correo"
-                    className="border-2 border-gray !w-full rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100"
+                    className="!w-8/12 border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100 text-sm"
                     autoComplete="off"
                     placeholder="Ingresa el correo electrónico"
                   />
@@ -196,13 +196,12 @@ const ModalRegistrarUsuarios: FC<RegistrarUsuariosProps> = ({
                         onChange={(e) =>
                           setDominioCorreo(e.target.value)
                         }
-                        //the next regex validates that the input is a valid domain starting with @ and following letters, numbers, dashes or dots
                         pattern="^@([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+$"
                         title="Ingresa un dominio válido"
                         type="text"
                         name="dominioCorreo"
                         id="input-dominio-correo"
-                        className="border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100"
+                        className="border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100 text-xs"
                         autoComplete="off"
                         placeholder="Ingresa el dominio"
                       />
