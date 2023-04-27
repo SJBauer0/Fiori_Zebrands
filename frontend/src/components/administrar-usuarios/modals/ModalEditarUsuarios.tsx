@@ -93,7 +93,10 @@ const ModalEditarUsuarios: FC<ModalEditarUsuariosProps> = ({
       const res = axios.get(`${URI}info/one/${info}`);
       res.then((response) => {
         const usuario = response.data.usuario.shift();
-        setNombre(usuario.nombre || 'Nuevo usuario');
+        setNombre(
+          usuario.nombre ||
+            'Nuevo usuario (sin autenticar con Google)'
+        );
         setCorreo(usuario.correo);
         setRol(usuario.rol);
         setEtiquetas(usuario.etiquetas);

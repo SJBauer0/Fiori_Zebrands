@@ -38,7 +38,7 @@ const UsersTable: FC<UsersTableProps> = ({}) => {
                 {usuario.nombre ||
                   'Nuevo usuario (sin autenticar con Google)'}
                 {user?.id_usuario === usuario.id && (
-                  <p className="text-information">(Tú)</p>
+                  <span className="text-information"> (Tú)</span>
                 )}
               </p>
             </span>

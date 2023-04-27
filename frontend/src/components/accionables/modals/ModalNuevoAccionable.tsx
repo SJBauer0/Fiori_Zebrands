@@ -108,21 +108,21 @@ const ModalNuevoAccionable: FC<ModalNuevoAccionable> = ({
         getAccionables();
         setIsModalOpen(false);
         addFlag(
-          'Accionable agregado correctamente al Backlog de Jira',
+          '¡Excelente! Tu accionable se ha agregado correctamente al Backlog de Jira',
           CheckCircleIcon,
           'success'
         );
       } catch (error) {
         if (error instanceof Error) {
           addFlag(
-            'Hubo un problema al agregar el accionable. Por favor, intenta nuevamente.',
+            '¡Oh no! Hubo un problema al agregar el accionable. Por favor, intenta nuevamente.',
             EditorErrorIcon,
             'error',
             error.toString()
           );
         } else {
           addFlag(
-            'Hubo un problema al agregar el accionable. Por favor, intenta nuevamente.',
+            '¡Oh no! Hubo un problema al agregar el accionable. Por favor, intenta nuevamente.',
             EditorErrorIcon,
             'error',
             'Error desconocido'
