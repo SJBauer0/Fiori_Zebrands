@@ -81,6 +81,7 @@ app.use('/api/sprints', sprintsJiraRoutes);
 app.use('/api/epics', epicJiraRoutes);
 app.use('/api/metricas', metricasRoutes);
 app.use('/api/preguntas', preguntaRoutes);
+app.use('/api/accionables', accionablesRoutes);
 
 app.get('/api/logout', (req, res) => {
   req.logout();

@@ -14,7 +14,9 @@ module.exports = class Accionable {
   }
 
   static fetchAll() {
-    return db.execute('SELECT * FROM accionables');
+    return db.execute(
+      'SELECT * FROM `accionables` ORDER By createdAt ASC'
+    );
   }
 
   static createAccionable(id_usuario, accionable, fecha, key_jira) {

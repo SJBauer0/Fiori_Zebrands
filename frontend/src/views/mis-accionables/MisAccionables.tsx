@@ -6,20 +6,15 @@ import WarningIcon from '@atlaskit/icon/glyph/warning';
 import axios from 'axios';
 import { FC, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Medal from '../../assets/medal.webp';
 import {
   BoxAccionable,
   DesignTemplate,
   ModalNuevoAccionable,
 } from '../../components';
 import { userDataContext } from '../../contexts/';
-import Team from '../../assets/medal.png';
 
 const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/accionables`;
-
-interface MisAccionablesProps {
-  setIsNewAccionableOpen: (value: boolean) => void;
-  agregarAccionable: (accionable: any) => void;
-}
 
 export interface Accionable {
   id: number;
@@ -29,7 +24,7 @@ export interface Accionable {
   createdAt: string;
 }
 
-const MisAccionables: FC<MisAccionablesProps> = ({}) => {
+const MisAccionables: FC = ({}) => {
   const [toggleUpdate, setToggleUpdate] = useState<boolean>(false);
   const { user } = useContext(userDataContext);
   const [isNewAccionableOpen, setIsNewAccionableOpen] =
@@ -112,7 +107,7 @@ const MisAccionables: FC<MisAccionablesProps> = ({}) => {
         <div className="flex flex-col gap-3">
           <div className="w-full bg-[#ffffff] p-4 rounded-sm shadow-sm">
             <div className="lg:flex lg:flex-row flex flex-col w-full bg-purple-100 py-7 gap-10 items-center justify-center rounded-sm">
-              <img src={Team} className="h-24" />
+              <img src={Medal} className="h-24" />
               <div className="flex gap-5 flex-col">
                 <div>
                   <h3 className="font-bold w-full text-discovery">

@@ -4,7 +4,7 @@ import { FC, useContext } from 'react';
 import SwitcherIcon from '@atlaskit/icon/glyph/switcher';
 import { userDataContext } from '../../contexts';
 
-const BotonReporte: FC = () => {
+const BotonGestionarRetro: FC = () => {
   const navigate = useNavigate();
   const { user } = useContext(userDataContext);
   if (user?.id_rol === 2 || user?.id_rol === 3) {
@@ -20,10 +20,10 @@ const BotonReporte: FC = () => {
         }}
         iconBefore={<SwitcherIcon label="Gestionar Retrospectivas" />}
       >
-        Gestionar Retrospectivas
+        Gestionar retrospectivas
       </Button>
     </>
   );
 };
 
-export default BotonReporte;
+export default BotonGestionarRetro;
