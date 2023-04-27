@@ -111,7 +111,7 @@ const ModalRegistrarEtiqueta: FC<RegistrarEtiquetaProps> = ({
                 <input
                   required
                   name="nombre"
-                  className="h-8 border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100 text-xs"
+                  className="h-8 border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100 text-sm"
                   autoComplete="off"
                   id="nombre"
                   type="text"

@@ -50,7 +50,7 @@ const ModalEditarUsuarios: FC<ModalEditarUsuariosProps> = ({
     setUsuarioJira(usuario);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const res = axios.post(`${URI}/updateUser/${info}`, {

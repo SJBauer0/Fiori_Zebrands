@@ -201,7 +201,7 @@ const ModalRegistrarUsuarios: FC<RegistrarUsuariosProps> = ({
                         type="text"
                         name="dominioCorreo"
                         id="input-dominio-correo"
-                        className="border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100 text-xs"
+                        className="border-2 border-gray rounded-sm p-2 focus:outline-gray-400 hover:bg-gray-100 text-sm"
                         autoComplete="off"
                         placeholder="Ingresa el dominio"
                       />
