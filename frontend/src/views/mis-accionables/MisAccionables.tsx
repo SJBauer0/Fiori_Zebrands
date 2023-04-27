@@ -115,7 +115,7 @@ const MisAccionables: FC = ({}) => {
                     son mejores que todos aquellos grandes que se
                     planean.
                   </h3>
-                  <p className="text-xs mt-1">
+                  <p className="text-sm mt-1">
                     Debes completar los accionables que te habías
                     propuesto, de esta forma podrás ver tu progreso y
                     el de tu equipo desde otra perspectiva.
@@ -125,7 +125,7 @@ const MisAccionables: FC = ({}) => {
                   Si lo deseas, puedes revisar directamente tu
                   progreso en Jira haciendo{' '}
                   <Link
-                    className="text-blue-500 hover:text-blue-800"
+                    className="text-link underline"
                     to="https://zebrands.atlassian.net"
                     target="_blank"
                   >

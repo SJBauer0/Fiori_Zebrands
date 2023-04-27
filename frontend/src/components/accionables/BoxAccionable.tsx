@@ -59,7 +59,6 @@ const BoxAccionable: FC<BoxAccionableProps> = ({
       await axios.post(
         `${URI}/solve/${accionable.key_jira}/${accionable.id}`
       );
-      getAccionables();
       addFlag(
         '¡Buen trabajo! Tu accionable se ha marcado como completado exitosamente.',
         CheckCircleIcon,
@@ -72,6 +71,8 @@ const BoxAccionable: FC<BoxAccionableProps> = ({
         EditorErrorIcon,
         'error'
       );
+    } finally {
+      getAccionables();
     }
   };
 
