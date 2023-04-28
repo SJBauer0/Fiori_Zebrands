@@ -358,7 +358,7 @@ ORDER BY e.id ASC, e.nombre ASC;
     return db.execute(
       `
       SELECT e.nombre,
-       IFNULL(SUM(i.story_points), 0) AS total_story_points_done
+       IFNULL(SUM(i.story_points), 0) AS total_story_points
       FROM epics e
       LEFT JOIN issues i ON e.id_jira = i.key_epic AND i.status = 'Done'
       WHERE e.nombre IN ("Middleware Paqueterías", "Google Tag Manager", "Catalog Connect", "Implementar secciones de la aplicacion", "Migración de contentful a Zesystem")  
@@ -372,7 +372,7 @@ ORDER BY e.id ASC, e.nombre ASC;
     return db.execute(
       `
       SELECT e.nombre,
-       IFNULL(SUM(i.story_points), 0) AS total_story_points_done
+       IFNULL(SUM(i.story_points), 0) AS total_story_points
       FROM epics e
       LEFT JOIN issues i ON e.id_jira = i.key_epic AND i.status = 'To Do'
       WHERE e.nombre IN ("Middleware Paqueterías", "Google Tag Manager", "Catalog Connect", "Implementar secciones de la aplicacion", "Migración de contentful a Zesystem")  
