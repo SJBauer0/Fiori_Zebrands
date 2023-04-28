@@ -13,7 +13,9 @@ const URI = `${import.meta.env.VITE_APP_BACKEND_URI}/metricas`;
 const MetricasPersonales: FC = ({}) => {
   const [sprintsSeleccionadas, setSprintsSeleccionadas] =
     useState<any>([]);
-  const [sprintsValuesArray, setSprintsValuesArray] = useState([]);
+  const [sprintsValuesArray, setSprintsValuesArray] = useState<any>(
+    []
+  );
 
   const handleSprintSeleccionados = (sprints: any[]) => {
     setSprintsSeleccionadas(sprints);
@@ -183,7 +185,7 @@ const MetricasPersonales: FC = ({}) => {
         <div className="md:col-span-2">
           <ChartCards
             title={`Número de story points por estado ${
-              sprintsSeleccionadas > 0
+              sprintsValuesArray > 0
                 ? 'en los filtros de sprint seleccionados'
                 : 'en todos los sprints'
             }`}
