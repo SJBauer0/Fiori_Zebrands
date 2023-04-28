@@ -86,10 +86,10 @@ const ModalReporte: FC<ModalReporteProps> = ({ setIsOpen }) => {
         `${URI}/SUMtodoglobal`
       );
       const { data: dataDoneAcumE } = await axios.get(
-        `${URI}/epicsSUMdoneglobal`
+        `${URI}/donereporte`
       );
       const { data: dataToDoAcumE } = await axios.get(
-        `${URI}/epicsSUMtodoglobal`
+        `${URI}/todoreporte`
       );
       if (dataDoneAcumS)
         setDataDoneAcumS(dataDoneAcumS.sprints[0].reverse());

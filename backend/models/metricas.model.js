@@ -60,7 +60,6 @@ module.exports = class StatusIssue {
       SELECT i.status, COUNT(*) AS total
       FROM issues i, sprints s, sprints_issues si
       WHERE i.clave = si.id_issue 
-      AND i.status IN ("Done", "To Do", "En Curso")
       AND si.id_sprint = s.id_jira
       AND i.assignee_id = ?
       AND s.id_jira IN (${placeholders})
@@ -351,6 +350,34 @@ WHERE i.status = "To Do"
 GROUP BY e.id, e.nombre
 ORDER BY e.id ASC, e.nombre ASC;
 
+      `
+    );
+  }
+
+  static getDoneEpicReport() {
+    return db.execute(
+      `
+      SELECT e.nombre, SUM(i.story_points) AS total_story_points
+      FROM issues i, epics e
+      WHERE i.key_epic = e.id_jira
+      AND e.id_jira IN ("TPECG-3911", "TPECG-3705", "TPECG-4013", "TPECG-32O2", "TPECG-3212")  
+      and i.status = "Done"
+      GROUP BY e.nombre
+      ORDER BY e.id ASC
+      `
+    );
+  }
+
+  static getToDoEpicReport() {
+    return db.execute(
+      `
+      SELECT e.nombre, SUM(i.story_points) AS total_story_points
+      FROM issues i, epics e
+      WHERE i.key_epic = e.id_jira
+      AND e.id_jira IN ("TPECG-3911", "TPECG-3705", "TPECG-4013", "TPECG-32O2", "TPECG-3212")  
+      and i.status = "To Do"
+      GROUP BY e.nombre
+      ORDER BY e.id ASC
       `
     );
   }

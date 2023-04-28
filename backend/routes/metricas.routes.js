@@ -86,5 +86,9 @@ router.get(
   sprintsDataController.fetchToDoStoryPointsProgressiveLastEpics
 );
 
+router.get('/donereporte', sprintsDataController.fetchToDoEpicReport);
+
+router.get('/todoreporte', sprintsDataController.fetchDoneEpicReport);
+
 router.get('/sprints/:ids', sprintsDataController.fetchSprintsByIds);
 module.exports = router;
