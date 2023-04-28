@@ -153,8 +153,8 @@ const Reporte: FC<ReporteProps> = ({
 
   useEffect(() => {
     if (canvasEpics.length > 0) {
-      setEpicDoneData(canvasEpics[0].data.reverse());
-      setEpicToDoData(canvasEpics[1].data.reverse());
+      setEpicDoneData(canvasEpics[0].data);
+      setEpicToDoData(canvasEpics[1].data);
     }
   }, [canvasEpics]);
 
