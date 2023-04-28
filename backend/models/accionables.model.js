@@ -4,6 +4,7 @@ const auth = {
   username: process.env.JIRA_USERNAME_FIORI,
   password: process.env.JIRA_PASSWORD_FIORI,
 };
+const URL_BOARD = process.env.JIRA_BOARD_URL;
 
 module.exports = class Accionable {
   constructor(newAccionable) {
@@ -33,21 +34,16 @@ module.exports = class Accionable {
         },
         summary: `${descripcion}`,
         issuetype: {
-          name: 'Bug',
+          name: process.env.JIRA_BOARD_ISSUE_TYPE,
         },
-        customfield_10016: 100,
-        // customfield_10036: '2022-04-25',
+        customfield_10016: 1,
         assignee: `${id_usuario}`,
       },
     };
 
-    const response = await axios.post(
-      'https://fioritec.atlassian.net/rest/api/3/issue/',
-      bodyData,
-      {
-        auth: auth,
-      }
-    );
+    const response = await axios.post(URL_BOARD, bodyData, {
+      auth: auth,
+    });
 
     return response.data;
   };
@@ -88,12 +84,8 @@ module.exports = class Accionable {
         id: '31',
       },
     };
-    await axios.post(
-      `https://fioritec.atlassian.net/rest/api/3/issue/${id}/transitions`,
-      bodyData,
-      {
-        auth: auth,
-      }
-    );
+    await axios.post(`${URL_BOARD}/${id}/transitions`, bodyData, {
+      auth: auth,
+    });
   };
 };
