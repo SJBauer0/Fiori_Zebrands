@@ -150,7 +150,7 @@ const MisAccionables: FC = ({}) => {
                   primaryColor="#DE350B"
                 />
                 <p className="font-semibold flex flex-row text-sm text-danger ml-2">
-                  Prioridad alta
+                Urgencia alta
                 </p>
               </div>
               {prioridadAlta.length > 0 ? (
@@ -165,7 +165,7 @@ const MisAccionables: FC = ({}) => {
                 ))
               ) : (
                 <p className="text-xs text-discovery">
-                  No tienes accionables en prioridad alta.
+                  No tienes accionables en urgencia alta.
                 </p>
               )}
             </div>
@@ -174,11 +174,11 @@ const MisAccionables: FC = ({}) => {
               <div className="flex items-center">
                 <WarningIcon
                   size="medium"
-                  label="Prioridad media"
+                  label="Urgencia media"
                   primaryColor="#CD742D"
                 />
                 <p className="font-semibold flex flex-row text-sm text-mediumDanger ml-2">
-                  Prioridad media
+                Urgencia media
                 </p>
               </div>
               {prioridadMedia.length > 0 ? (
@@ -191,7 +191,7 @@ const MisAccionables: FC = ({}) => {
                 ))
               ) : (
                 <p className="text-xs text-discovery">
-                  No tienes accionables en prioridad media.
+                  No tienes accionables en urgencia media.
                 </p>
               )}
             </div>
@@ -204,7 +204,7 @@ const MisAccionables: FC = ({}) => {
                   primaryColor="#22A06B"
                 />
                 <p className="font-semibold flex flex-row text-sm text-green ml-2">
-                  Prioridad baja
+                Urgencia baja
                 </p>
               </div>
               {prioridadBaja.length > 0 ? (
@@ -217,7 +217,7 @@ const MisAccionables: FC = ({}) => {
                 ))
               ) : (
                 <p className="text-xs text-discovery">
-                  No tienes accionables en prioridad baja.
+                  No tienes accionables en urgencia baja.
                 </p>
               )}
             </div>

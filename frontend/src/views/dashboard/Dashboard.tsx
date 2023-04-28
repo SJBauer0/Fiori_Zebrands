@@ -164,7 +164,7 @@ const Dashboard: FC = ({}) => {
                       primaryColor="#DE350B"
                     />
                     <p className="font-semibold text-center flex flex-row text-sm text-danger ml-2">
-                      Prioridad alta
+                      Urgencia alta
                     </p>
                     <p className="mt-4 font-medium">
                       {prioridadAlta.length}
@@ -179,7 +179,7 @@ const Dashboard: FC = ({}) => {
                       primaryColor="#CD742D"
                     />
                     <p className="font-semibold text-center flex flex-row text-sm text-mediumDanger ml-2">
-                      Prioridad media
+                      Urgencia media
                     </p>
                     <p className="mt-4 font-medium">
                       {prioridadMedia.length}
@@ -194,7 +194,7 @@ const Dashboard: FC = ({}) => {
                       primaryColor="#22A06B"
                     />
                     <p className="font-semibold text-center flex flex-row text-sm text-green ml-2">
-                      Prioridad baja
+                      Urgencia baja
                     </p>
                     <p className="mt-4 font-medium">
                       {prioridadBaja.length}

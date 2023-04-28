@@ -16,7 +16,7 @@ const divGroupsStyle =
   'flex flex-col gap-2 lg:gap-5 bg-[#ffffff] py-4 px-4 lg:py-5 lg:px-5 rounded-sm shadow-sm overflow-y-auto min-w-auto min-h-auto lg:max-h-[40rem] lg:min-w-[28rem] min-h-[30vh]';
 
 const cardsTitles =
-  'text-sm font-semibold text-information lg:text-start text-center';
+  'text-base font-semibold text-information lg:text-start text-center';
 
 const PanelRetros: FC<PanelRetrosProps> = ({
   tryFetch,

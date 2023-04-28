@@ -20,7 +20,7 @@ const BotonGestionarRetro: FC = () => {
         }}
         iconBefore={<SwitcherIcon label="Gestionar Retrospectivas" />}
       >
-        Gestionar retrospectivas
+        Gestionar o crear retrospectivas
       </Button>
     </>
   );

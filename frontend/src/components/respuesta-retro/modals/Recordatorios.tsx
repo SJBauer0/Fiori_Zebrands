@@ -123,7 +123,7 @@ const Recordatorios: FC<RecordatoriosProps> = ({
                 </h4>
                 <p className="text-xs max-w-xl">
                   Es importante atender los accionables con mayor
-                  prioridad cuanto antes para evitar que se acumulen
+                  urgencia cuanto antes para evitar que se acumulen
                   en futuros Sprints.
                 </p>
               </div>
@@ -139,7 +139,7 @@ const Recordatorios: FC<RecordatoriosProps> = ({
                       {prioridadAlta.length === 1
                         ? 'accionable'
                         : 'accionables'}{' '}
-                      en prioridad alta
+                      en urgencia alta
                     </p>
                   </div>
                   <div className="flex flex-row items-center">
@@ -152,7 +152,7 @@ const Recordatorios: FC<RecordatoriosProps> = ({
                       {prioridadMedia.length === 1
                         ? 'accionable'
                         : 'accionables'}{' '}
-                      en prioridad media
+                      en urgencia media
                     </p>
                   </div>
                   <div className="flex flex-row items-center">
@@ -165,7 +165,7 @@ const Recordatorios: FC<RecordatoriosProps> = ({
                       {prioridadBaja.length === 1
                         ? 'accionable'
                         : 'accionables'}{' '}
-                      en prioridad baja
+                      en urgencia baja
                     </p>
                   </div>
                 </div>

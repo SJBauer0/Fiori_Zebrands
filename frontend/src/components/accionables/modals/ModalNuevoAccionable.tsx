@@ -216,6 +216,20 @@ const ModalNuevoAccionable: FC<ModalNuevoAccionable> = ({
                     className="w-1/2 bg-slate-50 border mt-1 rounded-sm p-2 text-xs text-gray-500 focus:outline-blue-500 hover:bg-gray-100 placeholder:text-xs h-8"
                     onChange={handleChangeFecha}
                   />
+                  <div className='pt-1'>
+                    <p className="text-xs text-green">
+                      *Si faltan 30 días o mas para la fecha límite la
+                      urgencia del accionable será BAJA.
+                    </p>
+                    <p className="text-xs text-mediumDanger">
+                      *Si faltan 30 días o menos para la fecha límite
+                      la urgencia del accionable será MEDIA.
+                    </p>
+                    <p className="text-xs text-danger">
+                      *Si faltan 7 días o menos para la fecha límite
+                      la urgencia del accionable será ALTA.
+                    </p>
+                  </div>
                 </div>
                 <div
                   className="flex items-center justify-end

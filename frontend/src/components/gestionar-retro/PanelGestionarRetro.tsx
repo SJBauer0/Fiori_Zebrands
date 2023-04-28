@@ -67,7 +67,7 @@ const PanelGestionarRetro: FC<PanelGestionarRetroProps> = ({}) => {
   return (
     <div className="grid grid-cols-2 gap-5">
       <div className={divCardsStyle}>
-        <h2 className="text-sm font-semibold text-information">
+        <h2 className="text-lg font-semibold text-information">
           Retrospectivas en curso
         </h2>
         {retrosOngoing.length > 0 ? (
@@ -92,7 +92,7 @@ const PanelGestionarRetro: FC<PanelGestionarRetroProps> = ({}) => {
         )}
       </div>
       <div className={divCardsStyle}>
-        <h2 className="text-sm font-semibold text-information">
+        <h2 className="text-lg font-semibold text-information">
           Retrospectivas finalizadas
         </h2>
         {retrosFinished.length > 0 ? (
