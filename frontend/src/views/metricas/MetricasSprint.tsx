@@ -135,7 +135,7 @@ const MetricasSprint: FC = ({}) => {
         <div className="md:col-span-3 flex flex-col md:flex-row gap-7">
           <ChartCards
             title={`Story points totales ${
-              sprintsSeleccionadas === 1
+              sprintsSeleccionadas.length === 1
                 ? 'del sprint seleccionado'
                 : 'de los sprints seleccionados'
             }`}
@@ -152,7 +152,7 @@ const MetricasSprint: FC = ({}) => {
 
           <ChartCards
             title={`Issues totales y completados ${
-              sprintsSeleccionadas === 1
+              sprintsSeleccionadas.length === 1
                 ? 'del sprint seleccionado'
                 : 'de los sprints seleccionados'
             }`}

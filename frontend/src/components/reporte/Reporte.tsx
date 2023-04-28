@@ -166,13 +166,6 @@ const Reporte: FC<ReporteProps> = ({
   const sprintToDoRateOfChange = sprintToDoData
     ? calculateRateOfChange(sprintToDoData)
     : 0;
-  const epicDoneRateOfChange = epicDoneData
-    ? calculateRateOfChange(epicDoneData)
-    : 0;
-  const epicToDoRateOfChange = epicToDoData
-    ? calculateRateOfChange(epicToDoData)
-    : 0;
-
   const sprintDoneAverage = sprintDoneData
     ? calculateAverage(sprintDoneData)
     : 0;
@@ -185,7 +178,6 @@ const Reporte: FC<ReporteProps> = ({
   const epicToDoAverage = epicToDoData
     ? calculateAverage(epicToDoData)
     : 0;
-
   const sprintDonePercentageChange = sprintDoneData
     ? calculatePercentageChange(sprintDoneData)
     : 0;
@@ -330,12 +322,8 @@ const Reporte: FC<ReporteProps> = ({
             ))}
           </View>
           <Text style={styles.text}>
-            Para los epics, la tasa de cambio en los story points en
-            Done entre los dos últimos epics es de{' '}
-            <Text style={styles.number}>{epicDoneRateOfChange}</Text>{' '}
-            y en To Do es de{' '}
-            <Text style={styles.number}>{epicToDoRateOfChange}</Text>.
-            Además, el promedio de story points en Done por epic es de{' '}
+            Para los epics, el promedio de story points en Done por
+            epic es de{' '}
             <Text style={styles.number}>{epicDoneAverage}</Text>,
             mientras que en To Do es de{' '}
             <Text style={styles.number}>{epicToDoAverage}</Text>.

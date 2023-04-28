@@ -95,8 +95,10 @@ const ModalReporte: FC<ModalReporteProps> = ({ setIsOpen }) => {
         setDataDoneAcumS(dataDoneAcumS.sprints[0].reverse());
       if (dataToDoAcumS)
         setDataToDoAcumS(dataToDoAcumS.sprints[0].reverse());
-      if (dataDoneAcumE) setDataDoneAcumE(dataDoneAcumE.sprints[0]);
-      if (dataToDoAcumE) setDataToDoAcumE(dataToDoAcumE.sprints[0]);
+      if (dataDoneAcumE)
+        setDataDoneAcumE(dataDoneAcumE.sprints[0].reverse());
+      if (dataToDoAcumE)
+        setDataToDoAcumE(dataToDoAcumE.sprints[0].reverse());
     } catch (error) {
       console.error(error);
     }
