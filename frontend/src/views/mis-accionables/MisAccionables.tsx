@@ -45,7 +45,6 @@ const MisAccionables: FC = ({}) => {
     try {
       const response = await axios.get(`${URI}/${user?.id_usuario}`);
       setAccionables(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error('Error al obtener los accionables', error);
     }
@@ -150,7 +149,7 @@ const MisAccionables: FC = ({}) => {
                   primaryColor="#DE350B"
                 />
                 <p className="font-semibold flex flex-row text-sm text-danger ml-2">
-                Urgencia alta
+                  Urgencia alta
                 </p>
               </div>
               {prioridadAlta.length > 0 ? (
@@ -178,7 +177,7 @@ const MisAccionables: FC = ({}) => {
                   primaryColor="#CD742D"
                 />
                 <p className="font-semibold flex flex-row text-sm text-mediumDanger ml-2">
-                Urgencia media
+                  Urgencia media
                 </p>
               </div>
               {prioridadMedia.length > 0 ? (
@@ -204,7 +203,7 @@ const MisAccionables: FC = ({}) => {
                   primaryColor="#22A06B"
                 />
                 <p className="font-semibold flex flex-row text-sm text-green ml-2">
-                Urgencia baja
+                  Urgencia baja
                 </p>
               </div>
               {prioridadBaja.length > 0 ? (
