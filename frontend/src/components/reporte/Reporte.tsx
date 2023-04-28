@@ -153,8 +153,8 @@ const Reporte: FC<ReporteProps> = ({
 
   useEffect(() => {
     if (canvasEpics.length > 0) {
-      setEpicDoneData(canvasEpics[0].data);
-      setEpicToDoData(canvasEpics[1].data);
+      setEpicDoneData(canvasEpics[0].data.reverse());
+      setEpicToDoData(canvasEpics[1].data.reverse());
     }
   }, [canvasEpics]);
 
@@ -191,12 +191,6 @@ const Reporte: FC<ReporteProps> = ({
     : 0;
   const sprintToDoPercentageChange = sprintToDoData
     ? calculatePercentageChange(sprintToDoData)
-    : 0;
-  const epicDonePercentageChange = epicDoneData
-    ? calculatePercentageChange(epicDoneData)
-    : 0;
-  const epicToDoPercentageChange = epicToDoData
-    ? calculatePercentageChange(epicToDoData)
     : 0;
   return (
     <Document>
@@ -344,17 +338,7 @@ const Reporte: FC<ReporteProps> = ({
             Además, el promedio de story points en Done por epic es de{' '}
             <Text style={styles.number}>{epicDoneAverage}</Text>,
             mientras que en To Do es de{' '}
-            <Text style={styles.number}>{epicToDoAverage}</Text>. La
-            variación porcentual en los story points en Done entre los
-            dos últimos epics es del{' '}
-            <Text style={styles.number}>
-              {epicDonePercentageChange}
-            </Text>
-            %, mientras que en To Do es del{' '}
-            <Text style={styles.number}>
-              {epicToDoPercentageChange}
-            </Text>
-            %.
+            <Text style={styles.number}>{epicToDoAverage}</Text>.
           </Text>
         </View>
         <View style={styles.section}>

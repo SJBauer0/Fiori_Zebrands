@@ -181,7 +181,13 @@ const MetricasPersonales: FC = ({}) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 justify-center gap-7 w-full h-auto md:h-[70rem]">
         <div className="md:col-span-2">
-          <ChartCards title="Story points">
+          <ChartCards
+            title={`Número de story points por estado ${
+              sprintsSeleccionadas > 0
+                ? 'en los filtros de sprint seleccionados'
+                : 'en todos los sprints'
+            }`}
+          >
             {data2 && data2.length > 0 ? (
               <StackedBarChart data={data2} />
             ) : (
@@ -192,7 +198,13 @@ const MetricasPersonales: FC = ({}) => {
             )}
           </ChartCards>
         </div>
-        <ChartCards title="Issues totales y completados">
+        <ChartCards
+          title={`Porcentaje de issues totales y completados ${
+            sprintsSeleccionadas > 0
+              ? 'en los filtros de sprint seleccionados'
+              : 'en todos los sprints'
+          }`}
+        >
           {data && data.length > 0 ? (
             <PieChart data={data} />
           ) : (

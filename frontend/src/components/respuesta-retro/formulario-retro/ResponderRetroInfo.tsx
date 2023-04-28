@@ -77,7 +77,11 @@ const ReponderRetroInfo: FC<ReponderRetroInfoProps> = ({
               Es hora de mirar hacia atrás y reflexionar sobre lo que
               logramos en el Sprint. Antes de responder algunas
               preguntas, te recomendamos que{' '}
-              <Link to="/metricas" className="text-link underline">
+              <Link
+                to="/metricas"
+                className="text-link underline"
+                target="_blank"
+              >
                 revises tus métricas
               </Link>{' '}
               para que puedas responder con confianza y precisión.

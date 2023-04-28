@@ -133,7 +133,13 @@ const MetricasSprint: FC = ({}) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 justify-center gap-7 w-full h-auto md:h-[70rem]">
         <div className="md:col-span-3 flex flex-col md:flex-row gap-7">
-          <ChartCards title="Story points del sprint">
+          <ChartCards
+            title={`Story points totales ${
+              sprintsSeleccionadas === 1
+                ? 'del sprint seleccionado'
+                : 'de los sprints seleccionados'
+            }`}
+          >
             {chart2Data && chart2Data.length > 0 ? (
               <StackedBarChart data={chart2Data} />
             ) : (
@@ -144,7 +150,13 @@ const MetricasSprint: FC = ({}) => {
             )}
           </ChartCards>
 
-          <ChartCards title="Issues totales y completado">
+          <ChartCards
+            title={`Issues totales y completados ${
+              sprintsSeleccionadas === 1
+                ? 'del sprint seleccionado'
+                : 'de los sprints seleccionados'
+            }`}
+          >
             {chartData && chartData.length > 0 ? (
               <PieChart data={chartData} />
             ) : (

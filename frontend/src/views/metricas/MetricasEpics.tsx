@@ -129,7 +129,7 @@ const MetricasEpics: FC = ({}) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 justify-center gap-7 w-full h-auto md:h-[70rem]">
         <div className="md:col-span-2 ">
-          <ChartCards title="Story points del epic">
+          <ChartCards title="Story points totales del epic">
             {chart2Data && chart2Data.length > 0 ? (
               <StackedBarChart data={chart2Data} />
             ) : (
@@ -140,7 +140,7 @@ const MetricasEpics: FC = ({}) => {
           </ChartCards>
         </div>
 
-        <ChartCards title="Comparación de sprints">
+        <ChartCards title="Comparación de estados de sprints en el epic">
           {chartData && chartData.length > 0 ? (
             <PieChart data={chartData} />
           ) : (
@@ -150,10 +150,10 @@ const MetricasEpics: FC = ({}) => {
           )}
         </ChartCards>
         <div className="md:col-span-3 flex flex-col md:flex-row gap-7">
-          <ChartCards title="Story points en Done acumulados por epic">
+          <ChartCards title="Story points en Done acumulados en los últimos 5 epic">
             <ComposedChart data={chart5Data} isSprint={false} />
           </ChartCards>
-          <ChartCards title="Story points en To Do acumulados por epic">
+          <ChartCards title="Story points en To Do acumulados en los últimos 5 epic">
             <ComposedChart
               data={chart6Data}
               barColor="#8838ff"

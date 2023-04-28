@@ -124,14 +124,14 @@ const ModalReporte: FC<ModalReporteProps> = ({ setIsOpen }) => {
 
       const chartDoneEPromise = createChartArrayItem(
         dataDoneAcumE,
-        'Story points en Done acumulados en los últimos 5 epics',
+        'Story points en Done de los 5 epics definidos',
         2,
         chartDoneERef
       );
 
       const chartToDoEPromise = createChartArrayItem(
         dataToDoAcumE,
-        'Story points en To Do acumulados en los últimos 5 epics',
+        'Story points en To Do de los 5 epics definidos',
         2,
         chartToDoERef
       );
