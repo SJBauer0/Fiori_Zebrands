@@ -357,11 +357,11 @@ ORDER BY e.id ASC, e.nombre ASC;
   static getDoneEpicReport() {
     return db.execute(
       `
-      SELECT e.nombre, SUM(i.story_points) AS total_story_points
-      FROM issues i, epics e
-      WHERE i.key_epic = e.id_jira
-      AND e.id_jira IN ("TPECG-3911", "TPECG-3705", "TPECG-4013", "TPECG-32O2", "TPECG-3212")  
-      and i.status = "Done"
+      SELECT e.nombre,
+       IFNULL(SUM(i.story_points), 0) AS total_story_points_done
+      FROM epics e
+      LEFT JOIN issues i ON e.id_jira = i.key_epic AND i.status = 'Done'
+      WHERE e.nombre IN ("Middleware Paqueterías", "Google Tag Manager", "Catalog Connect", "Implementar secciones de la aplicacion", "Migración de contentful a Zesystem")  
       GROUP BY e.nombre
       ORDER BY e.id ASC
       `
@@ -371,11 +371,11 @@ ORDER BY e.id ASC, e.nombre ASC;
   static getToDoEpicReport() {
     return db.execute(
       `
-      SELECT e.nombre, SUM(i.story_points) AS total_story_points
-      FROM issues i, epics e
-      WHERE i.key_epic = e.id_jira
-      AND e.id_jira IN ("TPECG-3911", "TPECG-3705", "TPECG-4013", "TPECG-32O2", "TPECG-3212")  
-      and i.status = "To Do"
+      SELECT e.nombre,
+       IFNULL(SUM(i.story_points), 0) AS total_story_points_done
+      FROM epics e
+      LEFT JOIN issues i ON e.id_jira = i.key_epic AND i.status = 'To Do'
+      WHERE e.nombre IN ("Middleware Paqueterías", "Google Tag Manager", "Catalog Connect", "Implementar secciones de la aplicacion", "Migración de contentful a Zesystem")  
       GROUP BY e.nombre
       ORDER BY e.id ASC
       `
