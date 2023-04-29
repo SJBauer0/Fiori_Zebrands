@@ -131,6 +131,7 @@ const PanelRetros: FC<PanelRetrosProps> = ({
               return (
                 <RetrospectivaGeneral
                   key={retrospectiva.id}
+                  respuestas={retrospectiva.num_respuestas}
                   idRetrospectiva={retrospectiva.id || -1}
                   titulo={retrospectiva.titulo || ''}
                   descripcion={retrospectiva.descripcion || ''}
