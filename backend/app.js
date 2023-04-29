@@ -86,10 +86,8 @@ app.use('/api/preguntas', preguntaRoutes);
 app.use('/api/accionables', accionablesRoutes);
 
 app.get('/api/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.clearCookie('connect.sid');
-    res.redirect('/api');
-  });
+  req.session = null;
+  res.clearCookie('connect.sid');
   req.logout();
   res.redirect('/api');
 });
