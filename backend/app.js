@@ -46,6 +46,8 @@ app.use(authRoutes);
 app.use((err, req, res, next) => {
   if (err.message === 'UserNotFound') {
     req.session.destroy(() => {
+      res.clearCookie('session.sig');
+      res.clearCookie('session');
       res.clearCookie('connect.sid');
       res.redirect('/api');
     });
@@ -86,8 +88,10 @@ app.use('/api/preguntas', preguntaRoutes);
 app.use('/api/accionables', accionablesRoutes);
 
 app.get('/api/logout', (req, res) => {
-  req.logout();
+  res.clearCookie('session.sig');
+  res.clearCookie('session');
   res.clearCookie('connect.sid');
+  req.logout();
   res.redirect('/api');
 });
 
