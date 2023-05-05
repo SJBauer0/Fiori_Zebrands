@@ -16,6 +16,7 @@ import {
   MisRetrospectivas,
 } from '../views';
 import SessionExpired from '../views/iniciar-sesion/SessionExpired';
+import Cookies from 'js-cookie';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -31,7 +32,11 @@ const Main = () => {
   const adminAllowed = idRol === 1 || false;
   const responsableAllowed = idRol === 2 || false;
 
-  if (!hasAttemptedFetch && !sessionExpired) {
+  if (!user && !Cookies.get('user')) {
+    return <Navigate to={'/login'} replace />;
+  }
+
+  if (!hasAttemptedFetch && !sessionExpired && Cookies.get('user')) {
     return (
       <div className="w-screen h-screen">
         <Spinner
@@ -47,10 +52,6 @@ const Main = () => {
     setSessionExpired(false);
     navigate('/login', { replace: true });
   };
-
-  if (!user) {
-    return <Navigate to={'/login'} replace />;
-  }
 
   return (
     <>
